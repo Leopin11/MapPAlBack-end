@@ -1,5 +1,7 @@
 package domain;
 
+import domain.Persona;
+
 import java.time.LocalDate;
 
 public class Turista extends Persona {
