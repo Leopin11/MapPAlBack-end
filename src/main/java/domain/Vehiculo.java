@@ -1,4 +1,4 @@
-package app.domain;
+package domain;
 
 public class Vehiculo {
     private Integer idVehiculo;

@@ -1,6 +1,4 @@
-package app.repository;
-
-import app.domain.Reserva;
+package repository;
 
 import java.util.ArrayList;
 import java.util.List;
