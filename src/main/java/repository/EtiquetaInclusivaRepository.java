@@ -1,6 +1,6 @@
-package app.repository;
+package repository;
 
-import app.domain.EtiquetaInclusiva;
+import domain.EtiquetaInclusiva;
 
 import java.util.ArrayList;
 import java.util.Collections;

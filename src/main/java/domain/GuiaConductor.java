@@ -1,5 +1,8 @@
 package domain;
 
+import domain.Persona;
+import domain.PrestadorLocal;
+
 import java.time.LocalDate;
 
 public class GuiaConductor extends Persona implements PrestadorLocal {
