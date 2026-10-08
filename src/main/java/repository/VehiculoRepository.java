@@ -1,6 +1,6 @@
-package app.repository;
+package repository;
 
-import app.domain.Vehiculo;
+import domain.Vehiculo;
 
 import java.util.ArrayList;
 import java.util.List;

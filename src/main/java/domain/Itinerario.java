@@ -1,6 +1,6 @@
-package app.domain;
+package domain;
 
-import app.domain.enums.NivelEstimulacion;
+import domain.enums.NivelEstimulacion;
 
 import java.time.LocalDateTime;
 

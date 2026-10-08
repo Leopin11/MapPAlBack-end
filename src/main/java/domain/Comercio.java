@@ -1,5 +1,6 @@
 package domain;
 
+import domain.PrestadorLocal;
 import enums.TipoComercio;
 
 public class Comercio implements PrestadorLocal {

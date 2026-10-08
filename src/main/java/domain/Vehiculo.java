@@ -1,4 +1,4 @@
-package app.domain;
+package domain;
 
 public class Vehiculo {
     private Integer idVehiculo;
@@ -65,7 +65,7 @@ public class Vehiculo {
         this.rutaSinEscalones = rutaSinEscalones;
     }
     public boolean cumpleFiltro(){
-
+        return true;
     }
 
 }

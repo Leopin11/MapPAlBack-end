@@ -1,4 +1,4 @@
-package app.domain.enums;
+package domain.enums;
 
 import java.time.LocalDate;
 
