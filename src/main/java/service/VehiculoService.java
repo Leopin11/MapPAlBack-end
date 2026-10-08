@@ -15,18 +15,22 @@ public class VehiculoService {
     //Registro de vehiculo
     public void registrarVehiculo(Vehiculo vehiculo) {
 
+        if (vehiculo == null) {
+            System.out.println("No puedes registrar un vehiculo nulo");
+            return;
+        }
+
         List<Vehiculo> vehiculoARegistrar = vehiculoRepository.vehiculosRegistrados();
 
         for (Vehiculo cadaVehiculo : vehiculoARegistrar){
-            if (vehiculo.getIdVehiculo() == cadaVehiculo.getIdVehiculo()){
-                System.out.println("No puedes registrar un vehiculo nuevo con un id existente");
+            if (vehiculo.getIdVehiculo().equals(cadaVehiculo.getIdVehiculo())){
+                System.out.println("No puedes registrar un vehiculo nuevo con un id existente" ); ;
+                return;
             }
         }
 
-        if (vehiculo != null) {
-            System.out.println("Vehiculo se registro con exito");
-            vehiculoRepository.guardarVehiculo(vehiculo);
-        }
+        System.out.println("Vehiculo se registro con exito");
+        vehiculoRepository.guardarVehiculo(vehiculo);
 
     }
 

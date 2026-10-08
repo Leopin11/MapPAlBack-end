@@ -65,7 +65,7 @@ public class Vehiculo {
         this.rutaSinEscalones = rutaSinEscalones;
     }
     public boolean cumpleFiltro(){
-        return true;
+
     }
 
 }

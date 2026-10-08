@@ -1,28 +1,28 @@
 package repository;
 
-import domain.Reserva;
+import domain.Comercio;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ReservaRepository {
 
-    private final List<Reserva> reservas;
+    private final List<Comercio.Reserva> reservas;
 
     public ReservaRepository(){
         this.reservas = new ArrayList<>();
     }
 
-    public void guardarNuevaReserva(Reserva reserva){
+    public void guardarNuevaReserva(Comercio.Reserva reserva){
         this.reservas.add(reserva);
     }
 
-    public List<Reserva> reservasRegistradas(){
+    public List<Comercio.Reserva> reservasRegistradas(){
         return this.reservas;
     }
 
-    public Reserva buscarReservaPorid(Integer idReserva){
-        for (Reserva reserva : this.reservas){
+    public Comercio.Reserva buscarReservaPorid(Integer idReserva){
+        for (Comercio.Reserva reserva : this.reservas){
             if (reserva.getIdReserva().equals(idReserva)){
                 return reserva;
             }
