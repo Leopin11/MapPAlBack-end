@@ -1,6 +1,6 @@
-package app.repository;
+package repository;
 
-import app.domain.Itinerario;
+import domain.GuiaConductor;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -8,24 +8,24 @@ import java.util.List;
 
 public class ItinerarioRepository {
 
-    private final List<Itinerario> itinerarios;
+    private final List<GuiaConductor.Itinerario> itinerarios;
 
     public ItinerarioRepository(){
         this.itinerarios = new ArrayList<>();
     }
 
-    public void guardarItinerario (Itinerario itinerario){
+    public void guardarItinerario (GuiaConductor.Itinerario itinerario){
         this.itinerarios.add(itinerario);
     }
 
-    public List<Itinerario> ItinerariosRegistrados(){
+    public List<GuiaConductor.Itinerario> ItinerariosRegistrados(){
         return this.itinerarios;
     }
 
-    public Itinerario buscarItinerarioPorId(Integer idItinerario){
-        for (Itinerario itinerario : this.itinerarios){
+    public GuiaConductor.Itinerario buscarItinerarioPorId(Integer idItinerario){
+        for (GuiaConductor.Itinerario itinerario : this.itinerarios){
             if (itinerario.getIdItinerario().equals(idItinerario)){
-                return (Itinerario) Collections.singletonList(itinerario);
+                return (GuiaConductor.Itinerario) Collections.singletonList(itinerario);
             }
         }
         return null;

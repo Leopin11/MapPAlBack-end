@@ -1,8 +1,13 @@
-package domain;
+package service;
+
+import domain.Persona;
 
 import java.time.LocalDate;
 
-public class Turista extends Persona {
+public class CertificadoService {
+
+
+    public static class Turista extends Persona {
         private String nacionalidad;
         private String idiomaPreferido;
 
@@ -35,5 +40,5 @@ public class Turista extends Persona {
         public void setNacionalidad(String nacionalidad) {this.nacionalidad = nacionalidad;}
 
         public void setIdiomaPreferido(String idiomaPreferido) {this.idiomaPreferido = idiomaPreferido;}
+    }
 }
-

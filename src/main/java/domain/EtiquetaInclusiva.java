@@ -1,6 +1,6 @@
-package app.domain;
+package domain;
 
-import app.domain.enums.CategoriaEtiqueta;
+import domain.enums.CategoriaEtiqueta;
 
 public class EtiquetaInclusiva {
     private Integer idEtiqueta;
