@@ -1,5 +1,6 @@
 package service;
 
+import domain.EtiquetaInclusiva;
 import domain.Persona;
 
 import java.time.LocalDate;
@@ -25,11 +26,10 @@ public class CertificadoService {
         }
 
         @Override
-        public String mostrarResumen(){return "";}  //Se queda VACÍO por ahora.
-
+        public String mostrarResumen(){return "";}
         //MÉTODOS PROPIOS:
-        public void armarItinerario(String destino, LocalDate fechas, String tipo) {}  //AÚN NO EXISTE "Itinerario". Por eso está como VOID (CARLOS).
-        public void configurarFiltrosDeAccesibilidad(EtiquetaInclusiva etiqueta) {}  //AÚN NO EXISTE "EtiquetaInclusiva" (CARLOS).
+        public void armarItinerario(String destino, LocalDate fechas, String tipo) {}
+        public void configurarFiltrosDeAccesibilidad(EtiquetaInclusiva etiqueta) {}
 
         //GETTERS:
         public String getNacionalidad() {return nacionalidad;}
