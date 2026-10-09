@@ -14,6 +14,7 @@ public class CertificadoRepository {
     }
 
     public void guardarNuevoCerificado(){
+        Certificado certificado = null;
         this.certificados.add(certificado);
     }
 
