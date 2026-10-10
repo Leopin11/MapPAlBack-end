@@ -3,6 +3,7 @@ package repository;
 import domain.Certificado;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class CertificadoRepository {
@@ -13,12 +14,25 @@ public class CertificadoRepository {
         this.certificados = new ArrayList<>();
     }
 
-    public void guardarNuevoCerificado(Certificado certificado){
+    public void guardarCerificado(Certificado certificado){
         this.certificados = new ArrayList<>();
     }
 
     public List<Certificado> certificadosRegistrados(){
-        return this.certificados;
+        return Collections.unmodifiableList(this.certificados);
+    }
+
+    public Certificado buscarCertificadoPorId (int idCertificado){
+        for (Certificado certificado : this.certificados){
+            if (certificado.getIdCertificado() == idCertificado){
+                return certificado;
+            }
+        }
+        return null;
+    }
+
+    public void eliminarCertificado (int idCertificado){
+        this.certificados.removeIf(certificado -> certificado.getIdCertificado() == idCertificado);
     }
 
 

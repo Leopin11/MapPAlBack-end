@@ -3,6 +3,8 @@ package repository;
 import domain.Vehiculo;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class VehiculoRepository {
@@ -18,13 +20,13 @@ public class VehiculoRepository {
     }
 
     public List<Vehiculo> vehiculosRegistrados(){
-        return this.vehiculos;
+        return Collections.unmodifiableList(this.vehiculos);
     }
 
     public Vehiculo buscarVehiculoPorId(int idVehiculo){
 
         for (Vehiculo vehiculo: this.vehiculos){
-            if (vehiculo.getIdVehiculo() == vehiculo.getIdVehiculo()){
+            if (vehiculo.getIdVehiculo() == idVehiculo){
                 return vehiculo;
             }
         }
@@ -32,7 +34,7 @@ public class VehiculoRepository {
         return null;
     }
 
-    public void eliminarVehiculo(Integer idVehiculo){
+    public void eliminarVehiculo(int idVehiculo){
         this.vehiculos.removeIf(vehiculo -> vehiculo.getIdVehiculo() == idVehiculo);
     }
 }
