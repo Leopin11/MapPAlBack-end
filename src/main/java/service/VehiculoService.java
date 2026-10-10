@@ -23,7 +23,7 @@ public class VehiculoService {
         List<Vehiculo> vehiculoARegistrar = vehiculoRepository.vehiculosRegistrados();
 
         for (Vehiculo cadaVehiculo : vehiculoARegistrar){
-            if (vehiculo.getIdVehiculo().equals(cadaVehiculo.getIdVehiculo())){
+            if (vehiculo.getIdVehiculo() == cadaVehiculo.getIdVehiculo()){
                 System.out.println("No puedes registrar un vehiculo nuevo con un id existente" ); ;
                 return;
             }
@@ -40,12 +40,12 @@ public class VehiculoService {
     }
 
     //Mostrar por el id.
-    public Vehiculo buscarId(Integer idVehiculo) {
+    public Vehiculo buscarId(int idVehiculo) {
         return vehiculoRepository.buscarVehiculoPorId(idVehiculo);
     }
 
     //Eliminar por el id.
-    public void eliminar(Integer idVehiculo){
+    public void eliminar(int idVehiculo){
         vehiculoRepository.eliminarVehiculo(idVehiculo);
     }
 

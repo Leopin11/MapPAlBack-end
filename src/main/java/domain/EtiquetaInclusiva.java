@@ -3,23 +3,23 @@ package domain;
 import domain.enums.CategoriaEtiqueta;
 
 public class EtiquetaInclusiva {
-    private Integer idEtiqueta;
+    private int idEtiqueta;
     private String nombre;
     private CategoriaEtiqueta categoria;
     private String descripcion;
 
-    public EtiquetaInclusiva(Integer idEtiqueta, String nombre, CategoriaEtiqueta categoria, String descripcion){
+    public EtiquetaInclusiva(int idEtiqueta, String nombre, CategoriaEtiqueta categoria, String descripcion){
         this.idEtiqueta = idEtiqueta;
         this.nombre = nombre;
         this.categoria = categoria;
         this.descripcion = descripcion;
     }
 
-    public Integer getIdEtiqueta() {
+    public int getIdEtiqueta() {
         return idEtiqueta;
     }
 
-    public void setIdEtiqueta(Integer idEtiqueta) {
+    public void setIdEtiqueta(int idEtiqueta) {
         this.idEtiqueta = idEtiqueta;
     }
 

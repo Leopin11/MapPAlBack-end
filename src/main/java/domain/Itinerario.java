@@ -5,14 +5,14 @@ import domain.enums.NivelEstimulacion;
 import java.time.LocalDateTime;
 
 public class Itinerario {
-    private Integer idItinerario;
+    private int idItinerario;
     private String destino;
     private LocalDateTime fechaDeInicio;
     private LocalDateTime fechaFin;
     private String tipoExperiencia;
     private NivelEstimulacion nivelEstimulacion;
 
-    public Itinerario(Integer idItinerario, String destino, LocalDateTime fechaDeInicio, LocalDateTime fechaFin, String tipoExperiencia, NivelEstimulacion nivelEstimulacion){
+    public Itinerario(int idItinerario, String destino, LocalDateTime fechaDeInicio, LocalDateTime fechaFin, String tipoExperiencia, NivelEstimulacion nivelEstimulacion){
         this.idItinerario = idItinerario;
         this.destino = destino;
         this.fechaDeInicio = fechaDeInicio;
@@ -25,7 +25,7 @@ public class Itinerario {
         return idItinerario;
     }
 
-    public void setIdItinerario(Integer idItinerario) {
+    public void setIdItinerario(int idItinerario) {
         this.idItinerario = idItinerario;
     }
 
@@ -69,7 +69,7 @@ public class Itinerario {
         this.nivelEstimulacion = nivelEstimulacion;
     }
 
-    public Integer calcularDuracion(){
+    public int calcularDuracion(){
 
         return 0;
     }
