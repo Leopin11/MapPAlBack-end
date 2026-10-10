@@ -5,23 +5,29 @@ import domain.enums.EstadoReserva;
 import java.time.LocalDateTime;
 
 public class Reserva {
-    private Integer idReserva;
+    private int idReserva;
     private LocalDateTime fechaReserva;
     private EstadoReserva estado;
-    private Double monto;
+    private boolean monto;
+    private Turista turista;
+    private PrestadorLocal prestadorLocal;
+    private Itinerario itinerario;
 
-    public Reserva(Integer idReserva, LocalDateTime fechaReserva, EstadoReserva estado, Double monto){
+    public Reserva(int idReserva, LocalDateTime fechaReserva, EstadoReserva estado, boolean monto, Turista turista, PrestadorLocal prestadorLocal, Itinerario itinerario) {
         this.idReserva = idReserva;
         this.fechaReserva = fechaReserva;
         this.estado = estado;
         this.monto = monto;
+        this.turista = turista;
+        this.prestadorLocal = prestadorLocal;
+        this.itinerario = itinerario;
     }
 
-    public Integer getIdReserva() {
+    public int getIdReserva() {
         return idReserva;
     }
 
-    public void setIdReserva(Integer idReserva) {
+    public void setIdReserva(int idReserva) {
         this.idReserva = idReserva;
     }
 
@@ -41,22 +47,35 @@ public class Reserva {
         this.estado = estado;
     }
 
-    public Double getMonto() {
+    public boolean isMonto() {
         return monto;
     }
 
-    public void setMonto(Double monto) {
+    public void setMonto(boolean monto) {
         this.monto = monto;
     }
 
-    public void confirmar(){
-
-    }
-    public void cancelar(){
-
+    public Turista getTurista() {
+        return turista;
     }
 
-    public void procesarPagoDirecto(){
+    public void setTurista(Turista turista) {
+        this.turista = turista;
+    }
 
+    public PrestadorLocal getPrestadorLocal() {
+        return prestadorLocal;
+    }
+
+    public void setPrestadorLocal(PrestadorLocal prestadorLocal) {
+        this.prestadorLocal = prestadorLocal;
+    }
+
+    public Itinerario getItinerario() {
+        return itinerario;
+    }
+
+    public void setItinerario(Itinerario itinerario) {
+        this.itinerario = itinerario;
     }
 }

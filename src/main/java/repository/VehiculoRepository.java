@@ -21,10 +21,10 @@ public class VehiculoRepository {
         return this.vehiculos;
     }
 
-    public Vehiculo buscarVehiculoPorId(Integer idVehiculo){
+    public Vehiculo buscarVehiculoPorId(int idVehiculo){
 
         for (Vehiculo vehiculo: this.vehiculos){
-            if (vehiculo.getIdVehiculo().equals(idVehiculo)){
+            if (vehiculo.getIdVehiculo() == vehiculo.getIdVehiculo()){
                 return vehiculo;
             }
         }
@@ -33,6 +33,6 @@ public class VehiculoRepository {
     }
 
     public void eliminarVehiculo(Integer idVehiculo){
-        this.vehiculos.removeIf(vehiculo -> vehiculo.getIdVehiculo().equals(idVehiculo));
+        this.vehiculos.removeIf(vehiculo -> vehiculo.getIdVehiculo() == idVehiculo);
     }
 }

@@ -3,24 +3,23 @@ package domain;
 import java.time.LocalDate;
 
 public class Certificado {
-    private Integer idCertificado;
+    private int idCertificado;
     private String nombre;
     private String entidadEmisora;
     private LocalDate fechaObtencion;
 
-    public Certificado(Integer idCertificado, String nombre, String entidadEmisora, LocalDate fechaObtencion){
+    public Certificado(int idCertificado, String nombre, String entidadEmisora, LocalDate fechaObtencion) {
         this.idCertificado = idCertificado;
         this.nombre = nombre;
         this.entidadEmisora = entidadEmisora;
         this.fechaObtencion = fechaObtencion;
     }
 
-
-    public Integer getIdCertificado() {
+    public int getIdCertificado() {
         return idCertificado;
     }
 
-    public void setIdCertificado(Integer idCertificado) {
+    public void setIdCertificado(int idCertificado) {
         this.idCertificado = idCertificado;
     }
 
@@ -47,6 +46,4 @@ public class Certificado {
     public void setFechaObtencion(LocalDate fechaObtencion) {
         this.fechaObtencion = fechaObtencion;
     }
-
-
 }

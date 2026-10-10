@@ -1,14 +1,14 @@
 package domain;
 
 public class Vehiculo {
-    private Integer idVehiculo;
+    private int idVehiculo;
     private String placa;
     private String marca;
-    private Integer capacidadPasajeros;
-    private Boolean baulCapacidadSilla;
-    private Boolean rutaSinEscalones;
+    private int capacidadPasajeros;
+    private boolean baulCapacidadSilla;
+    private boolean rutaSinEscalones;
 
-    public Vehiculo(Integer idVehiculo, String placa, String marca, Integer capacidadPasajeros, Boolean baulCapacidadSilla, Boolean rutaSinEscalones){
+    public Vehiculo(int idVehiculo, String placa, String marca, int capacidadPasajeros, boolean baulCapacidadSilla, boolean rutaSinEscalones) {
         this.idVehiculo = idVehiculo;
         this.placa = placa;
         this.marca = marca;
@@ -17,11 +17,11 @@ public class Vehiculo {
         this.rutaSinEscalones = rutaSinEscalones;
     }
 
-    public Integer getIdVehiculo() {
+    public int getIdVehiculo() {
         return idVehiculo;
     }
 
-    public void setIdVehiculo(Integer idVehiculo) {
+    public void setIdVehiculo(int idVehiculo) {
         this.idVehiculo = idVehiculo;
     }
 
@@ -41,31 +41,27 @@ public class Vehiculo {
         this.marca = marca;
     }
 
-    public Integer getCapacidadPasajeros() {
+    public int getCapacidadPasajeros() {
         return capacidadPasajeros;
     }
 
-    public void setCapacidadPasajeros(Integer capacidadPasajeros) {
+    public void setCapacidadPasajeros(int capacidadPasajeros) {
         this.capacidadPasajeros = capacidadPasajeros;
     }
 
-    public Boolean getBaulCapacidadSilla() {
+    public boolean isBaulCapacidadSilla() {
         return baulCapacidadSilla;
     }
 
-    public void setBaulCapacidadSilla(Boolean baulCapacidadSilla) {
+    public void setBaulCapacidadSilla(boolean baulCapacidadSilla) {
         this.baulCapacidadSilla = baulCapacidadSilla;
     }
 
-    public Boolean getRutaSinEscalones() {
+    public boolean isRutaSinEscalones() {
         return rutaSinEscalones;
     }
 
-    public void setRutaSinEscalones(Boolean rutaSinEscalones) {
+    public void setRutaSinEscalones(boolean rutaSinEscalones) {
         this.rutaSinEscalones = rutaSinEscalones;
     }
-    public boolean cumpleFiltro(){
-
-    }
-
 }
