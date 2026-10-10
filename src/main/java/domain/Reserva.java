@@ -8,16 +8,16 @@ public class Reserva {
     private int idReserva;
     private LocalDateTime fechaReserva;
     private EstadoReserva estado;
-    private boolean monto;
+    private double montoTotal;
     private Turista turista;
     private PrestadorLocal prestadorLocal;
     private Itinerario itinerario;
 
-    public Reserva(int idReserva, LocalDateTime fechaReserva, EstadoReserva estado, boolean monto, Turista turista, PrestadorLocal prestadorLocal, Itinerario itinerario) {
+    public Reserva(int idReserva, LocalDateTime fechaReserva, EstadoReserva estado, double monto, Turista turista, PrestadorLocal prestadorLocal, Itinerario itinerario) {
         this.idReserva = idReserva;
         this.fechaReserva = fechaReserva;
         this.estado = estado;
-        this.monto = monto;
+        this.montoTotal = monto;
         this.turista = turista;
         this.prestadorLocal = prestadorLocal;
         this.itinerario = itinerario;
@@ -47,12 +47,12 @@ public class Reserva {
         this.estado = estado;
     }
 
-    public boolean isMonto() {
-        return monto;
+    public double getMontoTotal() {
+        return montoTotal;
     }
 
-    public void setMonto(boolean monto) {
-        this.monto = monto;
+    public void setMontoTotal(double montoTotal) {
+        this.montoTotal = montoTotal;
     }
 
     public Turista getTurista() {
