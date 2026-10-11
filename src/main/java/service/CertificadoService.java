@@ -30,11 +30,11 @@ public class CertificadoService {
         return certificadoRepository.certificadosRegistrados();
     }
 
-    public Certificado bucarId (int idCertificado){
+    public Certificado bucarIdCertificado (int idCertificado){
         return certificadoRepository.buscarCertificadoPorId(idCertificado);
     }
 
-    public void eliminar (int idCertificado){
+    public void eliminarCertificado (int idCertificado){
         certificadoRepository.eliminarCertificado(idCertificado);
     }
 }
