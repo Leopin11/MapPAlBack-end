@@ -17,6 +17,14 @@ public class Vehiculo {
         this.rutaSinEscalones = rutaSinEscalones;
     }
 
+    public Vehiculo(int idVehiculo, String placa, String marca, int capacidadPasajeros, boolean baulCapacidadSilla) {
+        this.idVehiculo = idVehiculo;
+        this.placa = placa;
+        this.marca = marca;
+        this.capacidadPasajeros = capacidadPasajeros;
+        this.baulCapacidadSilla = baulCapacidadSilla;
+    }
+
     public int getIdVehiculo() {
         return idVehiculo;
     }
