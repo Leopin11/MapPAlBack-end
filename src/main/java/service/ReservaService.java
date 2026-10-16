@@ -1,10 +1,14 @@
 package service;
 
 import domain.Itinerario;
+import domain.PrestadorLocal;
 import domain.Reserva;
+import domain.Turista;
+import domain.enums.EstadoReserva;
 import repository.ItinerarioRepository;
 import repository.ReservaRepository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class ReservaService {
@@ -13,26 +17,91 @@ public class ReservaService {
 
     public ReservaService (ReservaRepository reservaRepository) {
        this.reservaRepository = reservaRepository;
-
     }
 
-    public void registrarReserva(Reserva reserva){
-        if (reserva == null){
-            System.out.println("La reserva no puede estar nula");
-            return;
+    public void registrarNuevaReserva(int idReserva, LocalDateTime fechaReserva, EstadoReserva estado, double montoTotal, Turista turista, PrestadorLocal prestadorLocal, Itinerario itinerario ){
+
+        List<Reserva> reservasRegistradas = reservaRepository.reservasRegistradas();
+
+        for (Reserva cadaReserva : reservasRegistradas) {
+
+            if (idReserva == cadaReserva.getIdReserva()) {
+                System.out.println("El ID ya existe");
+                return;
+            }
+
+            if (fechaReserva.toLocalTime().equals(cadaReserva.getFechaReserva().toLocalTime())) {
+                System.out.println("Ya existe una reserva en esa hora");
+                return;
+            }
+
+            if (estado != EstadoReserva.PENDIENTE) {
+                System.out.println("Las reservas nuevas deben iniciar en estado PENDIENTE");
+                return;
+            }
+
+            // Validar monto
+            if (montoTotal <= 0) {
+                System.out.println("Error: El monto debe ser mayor a cero.");
+                return;
+            }
+
+            // Validar turista
+            if (turista == null) {
+                System.out.println("Error: Debe asociar un turista.");
+                return;
+            }
+
+            // Validar prestador
+            if (prestadorLocal == null) {
+                System.out.println("Error: Debe asociar un prestador local.");
+                return;
+            }
+
+            // Validar itinerario
+            if (itinerario == null) {
+                System.out.println("Error: Debe asociar un itinerario.");
+                return;
+            }
         }
-        System.out.println("Reserva agregada con existo");
-        reservaRepository.guardarReserva(reserva);
+
+
+        Reserva nuevaReserva = new Reserva(idReserva, fechaReserva, estado, montoTotal, turista, prestadorLocal, itinerario);
+
+        reservaRepository.guardarReserva(nuevaReserva);
+
+        System.out.println("Reserva registrada correctamente.");
+
     }
 
     public List<Reserva> mostrarReservas(){
         return reservaRepository.reservasRegistradas();
     }
     public Reserva buscarId(int idReserva){
-        return reservaRepository.buscarIdResserva(idReserva);
+
+        Reserva reserva = reservaRepository.buscarIdResserva(idReserva);
+
+        if (reserva == null){
+            System.out.println("No existe una reserva con el ID: " + idReserva);
+            return null;
+        }
+
+        return reserva;
     }
 
     public void eliminarReserva(int idReserva){
+
+        Reserva reserva = reservaRepository.buscarIdResserva(idReserva);
+
+        if (reserva == null){
+            System.out.println("No existe una reserva con ese ID");
+            return;
+        }
+
         reservaRepository.eliminarReserva(idReserva);
+
+        System.out.println("Reserva eliminada correctamente");
+
+
     }
 }
