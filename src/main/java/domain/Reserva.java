@@ -13,11 +13,11 @@ public class Reserva {
     private PrestadorLocal prestadorLocal;
     private Itinerario itinerario;
 
-    public Reserva(int idReserva, LocalDateTime fechaReserva, EstadoReserva estado, double monto, Turista turista, PrestadorLocal prestadorLocal, Itinerario itinerario) {
+    public Reserva(int idReserva, LocalDateTime fechaReserva, EstadoReserva estado, double montoTotal, Turista turista, PrestadorLocal prestadorLocal, Itinerario itinerario) {
         this.idReserva = idReserva;
         this.fechaReserva = fechaReserva;
         this.estado = estado;
-        this.montoTotal = monto;
+        this.montoTotal = montoTotal;
         this.turista = turista;
         this.prestadorLocal = prestadorLocal;
         this.itinerario = itinerario;
