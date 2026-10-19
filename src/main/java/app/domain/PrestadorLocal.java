@@ -1,4 +1,4 @@
-package domain;
+package app.domain;
 
 public interface PrestadorLocal {
     public double obtenerTarifaBase();

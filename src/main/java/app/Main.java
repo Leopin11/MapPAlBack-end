@@ -1,9 +1,8 @@
 package app;
 
-import domain.Vehiculo;
-import repository.VehiculoRepository;
-import service.VehiculoService;
-import view.VehiculoView;
+import app.repository.VehiculoRepository;
+import app.service.VehiculoService;
+import app.view.VehiculoView;
 
 import java.util.Scanner;
 

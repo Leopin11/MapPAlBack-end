@@ -1,8 +1,6 @@
-package repository;
+package app.repository;
 
-import domain.Comercio;
-import domain.EtiquetaInclusiva;
-import domain.Reserva;
+import app.domain.Reserva;
 
 import java.util.ArrayList;
 import java.util.Collections;

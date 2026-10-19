@@ -1,8 +1,7 @@
-package service;
+package app.service;
 
-import domain.EtiquetaInclusiva;
-import repository.CertificadoRepository;
-import repository.EtiquetaInclusivaRepository;
+import app.domain.EtiquetaInclusiva;
+import app.repository.EtiquetaInclusivaRepository;
 
 import java.util.List;
 

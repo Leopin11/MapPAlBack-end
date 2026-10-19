@@ -1,7 +1,7 @@
-package view;
+package app.view;
 
-import domain.Vehiculo;
-import service.VehiculoService;
+import app.domain.Vehiculo;
+import app.service.VehiculoService;
 
 import java.util.InputMismatchException;
 import java.util.List;

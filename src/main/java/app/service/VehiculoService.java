@@ -1,7 +1,7 @@
-package service;
+package app.service;
 
-import domain.Vehiculo;
-import repository.VehiculoRepository;
+import app.domain.Vehiculo;
+import app.repository.VehiculoRepository;
 
 import java.util.List;
 

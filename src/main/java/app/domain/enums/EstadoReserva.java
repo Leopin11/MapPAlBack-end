@@ -1,4 +1,4 @@
-package domain.enums;
+package app.domain.enums;
 
 public enum EstadoReserva {
     PENDIENTE,
