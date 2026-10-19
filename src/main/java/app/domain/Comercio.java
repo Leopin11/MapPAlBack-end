@@ -1,7 +1,5 @@
-package domain;
-import domain.enums.EstadoReserva;
-import domain.enums.TipoComercio;
-import java.time.LocalDateTime;
+package app.domain;
+import app.domain.enums.TipoComercio;
 
 public class Comercio implements PrestadorLocal {
     private int idComercio;

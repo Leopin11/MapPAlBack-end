@@ -1,12 +1,11 @@
-package service;
+package app.service;
 
-import domain.Itinerario;
-import domain.PrestadorLocal;
-import domain.Reserva;
-import domain.Turista;
-import domain.enums.EstadoReserva;
-import repository.ItinerarioRepository;
-import repository.ReservaRepository;
+import app.domain.Itinerario;
+import app.domain.PrestadorLocal;
+import app.domain.Reserva;
+import app.domain.Turista;
+import app.domain.enums.EstadoReserva;
+import app.repository.ReservaRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;

@@ -1,6 +1,6 @@
-package repository;
+package app.repository;
 
-import domain.Certificado;
+import app.domain.Certificado;
 
 import java.util.ArrayList;
 import java.util.Collections;

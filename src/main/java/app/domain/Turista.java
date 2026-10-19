@@ -1,6 +1,4 @@
-package domain;
-
-import domain.Persona;
+package app.domain;
 
 import java.time.LocalDate;
 

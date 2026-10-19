@@ -1,6 +1,6 @@
-package domain;
+package app.domain;
 
-import domain.enums.EstadoReserva;
+import app.domain.enums.EstadoReserva;
 
 import java.time.LocalDateTime;
 

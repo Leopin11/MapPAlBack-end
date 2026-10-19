@@ -1,9 +1,6 @@
-package domain;
-
-import domain.enums.NivelEstimulacion;
+package app.domain;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class GuiaConductor extends Persona implements PrestadorLocal {
     private double tarifaBase;

@@ -1,9 +1,8 @@
-package repository;
+package app.repository;
 
-import domain.Itinerario;
+import app.domain.Itinerario;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 

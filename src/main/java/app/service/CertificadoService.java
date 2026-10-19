@@ -1,11 +1,8 @@
-package service;
+package app.service;
 
-import domain.Certificado;
-import domain.EtiquetaInclusiva;
-import domain.Persona;
-import repository.CertificadoRepository;
+import app.domain.Certificado;
+import app.repository.CertificadoRepository;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public class CertificadoService {

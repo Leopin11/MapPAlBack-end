@@ -1,7 +1,7 @@
-package service;
+package app.service;
 
-import domain.Itinerario;
-import repository.ItinerarioRepository;
+import app.domain.Itinerario;
+import app.repository.ItinerarioRepository;
 
 import java.util.List;
 
