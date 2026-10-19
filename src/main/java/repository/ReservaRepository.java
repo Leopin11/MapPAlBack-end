@@ -17,7 +17,7 @@ public class ReservaRepository {
     }
 
     public void guardarReserva(Reserva reserva){
-        this.reservas = new ArrayList<>();
+        this.reservas.add(reserva);
     }
 
     public List<Reserva> reservasRegistradas(){
