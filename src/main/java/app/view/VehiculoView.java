@@ -1,135 +1,153 @@
 package app.view;
 
 import app.domain.Vehiculo;
-import app.service.VehiculoService;
+import app.service.inputport.VehiculoService;
 
-import java.util.InputMismatchException;
 import java.util.List;
-import java.util.Scanner;
+import java.util.Optional;
 
 public class VehiculoView {
     private final VehiculoService vehiculoService;
-    private final Scanner sc;
+    private final Consola consola;
 
-    public VehiculoView(VehiculoService vehiculoService, Scanner sc) {
+    public VehiculoView(VehiculoService vehiculoService, Consola consola) {
         this.vehiculoService = vehiculoService;
-        this.sc = sc;
+        this.consola = consola;
     }
 
-    private  void guardarVehiculo(){
-        try {
+    private void guardar(){
+        System.out.println("===== Datos del Vehículo =====");
 
-            System.out.println("=====Datos del Vehiculo=====");
+        int idVehiculo = consola.leerEntero("Ingrese el id del Vehículo:");
+        String placa = consola.leerTexto("Ingrese la placa del Vehículo:");
+        String marca = consola.leerTexto("Ingrese la marca del Vehículo:");
+        int capacidadPasajeros = consola.leerEntero("Ingrese la capacidad de pasajeros del Vehículo:");
+        boolean baulCapacidadSilla = consola.leerBooleano("¿Tiene capacidad para silla en el baúl?");
 
-            System.out.println("ingrese el id del Vehiculo:");
-            int idVehiculo = sc.nextInt();
-            sc.nextLine();
+        Optional<Vehiculo> registrado = vehiculoService.registrarVehiculo(idVehiculo, placa, marca, capacidadPasajeros, baulCapacidadSilla);
 
-            System.out.println("Ingrese la placa del Vehiculo:");
-            String placa = sc.nextLine();
-
-            System.out.println("Ingrese la marca del Vehiculo:");
-            String marca = sc.nextLine();
-
-            System.out.println("Ingrese capasidad de pasajeros del Vehiculo:");
-            int capacidadPasajeros = sc.nextInt();
-            sc.nextLine();
-
-            System.out.println("¿Tiene capacidad para silla en el baúl? (Verdadero/Falso)");
-            boolean baulCapacidadSilla = sc.nextBoolean();
-
-
-            vehiculoService.registrarVehiculo(idVehiculo,placa,marca,capacidadPasajeros,baulCapacidadSilla);
-
-        } catch (InputMismatchException e) {
-            System.out.println("Se requieren valores numericos validos para el id y capacidad de pasajeros" + e.getMessage());
-
+        if (registrado.isPresent()) {
+            System.out.println("Vehículo registrado con éxito");
+        } else {
+            System.out.println("No se pudo registrar: ya existe un vehículo con el ID " + idVehiculo);
         }
     }
 
-    private void listarVehiculos() {
+    private void mostrarVehiculos() {
         System.out.println("\n====== Lista de Vehículos ==========\n");
-        List<Vehiculo> lista = vehiculoService.mostrarVehiculos();
+        List<Vehiculo> lista = vehiculoService.listarVehiculos();
 
         if (lista.isEmpty()){
-            System.out.println("No hay Vehiculos Registrados!");
+            System.out.println("No hay Vehículos Registrados!");
         } else {
             for (Vehiculo vehiculo : lista) {
                 System.out.println(" ID: " + vehiculo.getIdVehiculo() +
                         "\n  Placa: " + vehiculo.getPlaca() +
                         "\n  Marca: " + vehiculo.getMarca() +
-                        "\n  Capacidad de Pasageros: " + vehiculo.getCapacidadPasajeros() +
-                        "\n  Baul Grande: " + vehiculo.isBaulCapacidadSilla()
+                        "\n  Capacidad de Pasajeros: " + vehiculo.getCapacidadPasajeros() +
+                        "\n  Baúl Grande: " + vehiculo.isBaulCapacidadSilla()
                 );
             }
         }
     }
 
-    private void buscarVehiculoPorId() {
+    private void buscarId() {
         System.out.println("""
                 ====== Buscar Vehículo por ID =====
-                Ingrese el id del Vehículo que desea Buscar:
                 """);
-        int id = sc.nextInt();
-        sc.nextLine();
+        int id = consola.leerEntero("Ingrese el id del Vehículo que desea Buscar:");
 
-        Vehiculo idDeVehiculoABuscar = vehiculoService.buscarId(id);
-        if(idDeVehiculoABuscar != null){
-            System.out.println("Se encontro el Vehículo con ID: " + idDeVehiculoABuscar.getIdVehiculo());
+        Optional<Vehiculo> encontrado = vehiculoService.buscarVehiculoPorId(id);
+        if(encontrado.isPresent()) {
+            System.out.println("Se encontró el Vehículo con ID: " + encontrado.get().getIdVehiculo());
         } else {
-            System.out.println("No se encontro Vehiculo con el ID: " + id);
+            System.out.println("No se encontró el Vehículo con el ID: " + id);
         }
     }
 
-    private void eliminarVehiculoPorId() {
+    private void actualizar() {
         System.out.println("""
-                ===== Eliminar Vehículo =======
-                Digita el id del vehículo a eliminar:
+                ========= Actualizar Vehículo =====
                 """);
-        int idDeVehiculoAEliminar = sc.nextInt();
-        sc.nextLine();
+        int id = consola.leerEntero("Digite el id del vehículo a actualizar:");
 
-        vehiculoService.eliminar(idDeVehiculoAEliminar);
-        System.out.println("Se elimino el vehiculo con el ID: " + idDeVehiculoAEliminar);
+        Optional<Vehiculo> existente = vehiculoService.buscarVehiculoPorId(id);
+        if(existente.isEmpty()) {
+            System.out.println("No existe un vehículo con el ID: " + id);
+            return;
+        }
 
+        Vehiculo vehiculoActual = existente.get();
+        System.out.println("Datos actuales -> Placa: " + vehiculoActual.getPlaca()
+                + " | Marca: " + vehiculoActual.getMarca()
+                + " | Capacidad: " + vehiculoActual.getCapacidadPasajeros() + " | Baúl silla: " + vehiculoActual.isBaulCapacidadSilla());
+
+        String placa = consola.leerTexto("Ingrese la nueva placa del vehículo:");
+        String marca = consola.leerTexto("Ingrese la nueva marca del vehículo:");
+        int capacidadPasajeros = consola.leerEntero("Ingrese la nueva capacidad de pasajeros:");
+        boolean baulCapacidadSilla = consola.leerBooleano("¿Tiene capacidad para silla en el baúl?");
+
+        Optional<Vehiculo> vehiculoActualizado = vehiculoService.actualizarVehiculo(id, placa, marca, capacidadPasajeros, baulCapacidadSilla);
+
+        if(vehiculoActualizado.isPresent()) {
+            System.out.println("Vehículo actualizado con éxito");
+        } else {
+            System.out.println("No se pudo actualizar: no existe un vehículo con el ID " + id);
+        }
     }
 
-    public void mostrarMenu() {
-        int option = 0;
+    private void eliminar() {
+        System.out.println("""
+                ===== Eliminar Vehículo =======
+                """);
+        int id = consola.leerEntero("Digita el id del vehículo a eliminar:");
+
+        if (vehiculoService.eliminarVehiculoPorId(id)) {
+            System.out.println("Se eliminó el vehículo con el ID: " + id);
+        } else {
+            System.out.println("No existe un vehículo con el ID: " + id);
+        }
+    }
+
+    public void mostrarMenuVehiculos() {
+        int opcion = 0;
         do {
             System.out.println("""
                     ========== ¿QUE VAS A REALIZAR? =========
                     1. Registrar Vehículo.
                     2. Mostrar todos los Vehículos.
                     3. Buscar un Vehículo por su ID.
-                    4. Eliminar Vehículo por su ID.
-                    5. Salir.
+                    4. Actualizar.
+                    5. Eliminar Vehículo por su ID.
+                    6. Regresar al Menu Principal.
                     """);
 
-            option = sc.nextInt();
-            sc.nextLine();
+            opcion = consola.leerEntero("Elige una opción:");
 
-            switch (option) {
+            switch (opcion) {
                 case 1:
-                    guardarVehiculo();
+                    guardar();
                     break;
                 case 2:
-                    listarVehiculos();
+                    mostrarVehiculos();
                     break;
                 case 3:
-                    buscarVehiculoPorId();
+                    buscarId();
                     break;
                 case 4:
-                    eliminarVehiculoPorId();
+                    actualizar();
                     break;
                 case 5:
-                    System.out.println("Saliendo del programa");
+                    eliminar();
+                    break;
+                case 6:
+                    System.out.println("Regresar al menu principal");
                     break;
                 default:
                     System.out.println("Ingresa una opcion del menu que sea valida.");
             }
 
-        } while (option != 5);
+        } while (opcion != 6);
 
     }
 }
