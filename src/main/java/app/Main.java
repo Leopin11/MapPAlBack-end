@@ -1,29 +1,18 @@
 package app;
 
-import app.repository.VehiculoRepository;
-import app.service.VehiculoService;
-import app.view.VehiculoView;
+import app.configuration.Config;
+import app.userinterface.UserInterface;
 
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
-        VehiculoRepository vehiculoRepository = new VehiculoRepository();
+        Config config = new Config();
+        UserInterface userInterface = config.construirUserInterface(sc);
 
-        VehiculoService vehiculoService = new VehiculoService(vehiculoRepository);
-
-        VehiculoView vehiculoView = new VehiculoView(vehiculoService, scanner);
-
-        System.out.println("""
-                ============================================
-                            Bienvenido a MapPAl
-                ============================================
-                """);
-
-        vehiculoView.mostrarMenu();
-        scanner.close();
+        userInterface.iniciar();
+        sc.close();
     }
-
 }
