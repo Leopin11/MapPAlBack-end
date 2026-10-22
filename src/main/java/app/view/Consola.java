@@ -1,5 +1,7 @@
 package app.view;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -48,6 +50,20 @@ public class Consola {
             } else {
                 return texto;
             }
+        }
+    }
+
+    public LocalDate leerFecha(String mensaje) {
+        while (true) {
+            System.out.println(mensaje + " Formato: yyyy-MM-dd");
+            String texto = sc.nextLine().trim();
+            try {
+               LocalDate fecha = LocalDate.parse(texto);
+               return fecha;
+            } catch (DateTimeParseException e) {
+                System.out.println("El formato de la fecha es invalido.Formato: yyyy-MM-dd");
+            }
+
         }
     }
 }
