@@ -33,7 +33,7 @@ public class VehiculoView {
         }
     }
 
-    private void mostrarVehiculos() {
+    private void listar() {
         System.out.println("\n====== Lista de Vehículos ==========\n");
         List<Vehiculo> lista = vehiculoService.listarVehiculos();
 
@@ -52,9 +52,7 @@ public class VehiculoView {
     }
 
     private void buscarId() {
-        System.out.println("""
-                ====== Buscar Vehículo por ID =====
-                """);
+        System.out.println("====== Buscar Vehículo por ID =====");
         int id = consola.leerEntero("Ingrese el id del Vehículo que desea Buscar:");
 
         Optional<Vehiculo> encontrado = vehiculoService.buscarVehiculoPorId(id);
@@ -66,9 +64,7 @@ public class VehiculoView {
     }
 
     private void actualizar() {
-        System.out.println("""
-                ========= Actualizar Vehículo =====
-                """);
+        System.out.println("========= Actualizar Vehículo =====");
         int id = consola.leerEntero("Digite el id del vehículo a actualizar:");
 
         Optional<Vehiculo> existente = vehiculoService.buscarVehiculoPorId(id);
@@ -97,9 +93,7 @@ public class VehiculoView {
     }
 
     private void eliminar() {
-        System.out.println("""
-                ===== Eliminar Vehículo =======
-                """);
+        System.out.println("===== Eliminar Vehículo ======");
         int id = consola.leerEntero("Digita el id del vehículo a eliminar:");
 
         if (vehiculoService.eliminarVehiculoPorId(id)) {
@@ -113,7 +107,7 @@ public class VehiculoView {
         int opcion = 0;
         do {
             System.out.println("""
-                    ========== ¿QUE VAS A REALIZAR? =========
+                    ========== ¿Que vas a Realizar? =========
                     1. Registrar Vehículo.
                     2. Mostrar todos los Vehículos.
                     3. Buscar un Vehículo por su ID.
@@ -129,7 +123,7 @@ public class VehiculoView {
                     guardar();
                     break;
                 case 2:
-                    mostrarVehiculos();
+                    listar();
                     break;
                 case 3:
                     buscarId();
