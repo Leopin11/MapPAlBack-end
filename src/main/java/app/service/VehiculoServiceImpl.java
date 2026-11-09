@@ -46,7 +46,7 @@ public class VehiculoServiceImpl implements VehiculoService {
         actualizado.setBaulCapacidadSilla(baulCapacidadSilla);
 
         //Pido al repositorio que persista la nueva versión.
-        return vehiculoRepository.actualizarVehiculo(actualizado);
+        return vehiculoRepository.actualizarVehiculo(idVehiculo,actualizado);
     }
 
     @Override

@@ -8,6 +8,8 @@ public class Vehiculo {
     private boolean baulCapacidadSilla;
     private boolean rutaSinEscalones;
 
+    public Vehiculo() {}
+
     public Vehiculo(int idVehiculo, String placa, String marca, int capacidadPasajeros, boolean baulCapacidadSilla, boolean rutaSinEscalones) {
         this.idVehiculo = idVehiculo;
         this.placa = placa;

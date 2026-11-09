@@ -1,7 +1,7 @@
 package app.service;
 
 import app.domain.Itinerario;
-import app.repository.ItinerarioRepository;
+import app.persistence.repository.ItinerarioRepository;
 
 import java.util.List;
 

@@ -57,7 +57,11 @@ public class VehiculoView {
 
         Optional<Vehiculo> encontrado = vehiculoService.buscarVehiculoPorId(id);
         if(encontrado.isPresent()) {
-            System.out.println("Se encontró el Vehículo con ID: " + encontrado.get().getIdVehiculo());
+            System.out.println("Se encontró el Vehículo con ID: " + encontrado.get().getIdVehiculo()
+                    +       "\n  Placa: " + encontrado.get().getPlaca() +
+                            "\n  Marca: " + encontrado.get().getMarca() +
+                            "\n  Capacidad de Pasajeros: " + encontrado.get().getCapacidadPasajeros() +
+                            "\n  Baúl Grande: " + encontrado.get().isBaulCapacidadSilla());
         } else {
             System.out.println("No se encontró el Vehículo con el ID: " + id);
         }
