@@ -9,6 +9,6 @@ public interface VehiculoRepository {
     Vehiculo guardarVehiculo(Vehiculo vehiculo);
     List<Vehiculo> vehiculosRegistrados();
     Optional<Vehiculo> buscarVehiculoPorId(int idVehiculo);
-    Optional<Vehiculo> actualizarVehiculo(Vehiculo vehiculo);
+    Optional<Vehiculo> actualizarVehiculo(int idVehiculo, Vehiculo vehiculo);
     boolean eliminarVehiculoPorId(int idVehiculo);
 }

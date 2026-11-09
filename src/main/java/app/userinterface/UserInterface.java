@@ -1,5 +1,6 @@
 package app.userinterface;
 
+import app.persistence.dbconnection.DataBaseConnection;
 import app.view.CertificadoView;
 import app.view.Consola;
 import app.view.VehiculoView;
@@ -58,5 +59,6 @@ public class UserInterface {
             }
 
         } while (opcion != 6);
+
     }
 }

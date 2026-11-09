@@ -5,7 +5,7 @@ import app.domain.PrestadorLocal;
 import app.domain.Reserva;
 import app.domain.Turista;
 import app.domain.enums.EstadoReserva;
-import app.repository.ReservaRepository;
+import app.persistence.repository.ReservaRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;

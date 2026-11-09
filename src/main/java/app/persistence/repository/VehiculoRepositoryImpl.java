@@ -1,4 +1,4 @@
-package app.repository;
+package app.persistence.repository;
 
 import app.domain.Vehiculo;
 import app.service.outputport.VehiculoRepository;
@@ -38,7 +38,7 @@ public class VehiculoRepositoryImpl implements VehiculoRepository {
     }
 
     @Override
-    public Optional<Vehiculo> actualizarVehiculo(Vehiculo vehiculo) {
+    public Optional<Vehiculo> actualizarVehiculo(int idVehiculo, Vehiculo vehiculo) {
         for (int i = 0; i < this.vehiculos.size(); i++) {
             if (this.vehiculos.get(i).getIdVehiculo() == vehiculo.getIdVehiculo()) {
                 this.vehiculos.set(i, vehiculo);
