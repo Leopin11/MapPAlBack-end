@@ -1,6 +1,7 @@
 package app.persistence.repository;
 
 import app.domain.Vehiculo;
+import app.domain.relations.VehiculoEtiqueta;
 import app.service.outputport.VehiculoRepository;
 
 import java.util.ArrayList;
@@ -52,5 +53,10 @@ public class VehiculoRepositoryImpl implements VehiculoRepository {
     public boolean eliminarVehiculoPorId(int idVehiculo) {
         // removeIf ya devuelve true si eliminó al menos un elemento.
         return this.vehiculos.removeIf(vehiculo -> vehiculo.getIdVehiculo() == idVehiculo);
+    }
+
+    @Override
+    public List<VehiculoEtiqueta> obtenerEtiquetasDeVehiculo(int idVehiculo) {
+        return new ArrayList<>();
     }
 }
