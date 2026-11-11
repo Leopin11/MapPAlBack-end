@@ -1,6 +1,7 @@
 package app.service.inputport;
 
 import app.domain.Vehiculo;
+import app.domain.relations.VehiculoEtiqueta;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,4 +12,5 @@ public interface VehiculoService {
     List<Vehiculo> listarVehiculos();
     Optional<Vehiculo> buscarVehiculoPorId(int idVehiculo);
     boolean eliminarVehiculoPorId(int idVehiculo);
+    List<VehiculoEtiqueta> obtenerEtiquetasDeVehiculo(int idVehiculo);
 }

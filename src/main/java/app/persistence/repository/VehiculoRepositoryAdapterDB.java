@@ -1,6 +1,8 @@
 package app.persistence.repository;
 
 import app.domain.Vehiculo;
+import app.domain.relations.VehiculoEtiqueta;
+import app.persistence.mapper.VehiculoEtiquetaMapper;
 import app.persistence.mapper.VehiculoMapper;
 import app.service.outputport.VehiculoRepository;
 
@@ -16,10 +18,12 @@ public class VehiculoRepositoryAdapterDB implements VehiculoRepository {
 
     private final Connection dbconeccion;
     private final VehiculoMapper vehiculoMapper;
+    private final VehiculoEtiquetaMapper vehiculoEtiquetaMapper;
 
-    public VehiculoRepositoryAdapterDB(Connection dbconeccion, VehiculoMapper vehiculoMapper) {
+    public VehiculoRepositoryAdapterDB(Connection dbconeccion, VehiculoMapper vehiculoMapper, VehiculoEtiquetaMapper vehiculoEtiquetaMapper) {
         this.dbconeccion = dbconeccion;
         this.vehiculoMapper = vehiculoMapper;
+        this.vehiculoEtiquetaMapper = vehiculoEtiquetaMapper;
     }
 
     @Override
@@ -108,6 +112,29 @@ public class VehiculoRepositoryAdapterDB implements VehiculoRepository {
             throw  new RuntimeException("Error al eliminar el vehiculo" + e.getMessage());
         }
         return false;
+    }
+
+    @Override
+    public List<VehiculoEtiqueta> obtenerEtiquetasDeVehiculo(int idVehiculo) {
+        String sql = """
+                SELECT ve.idVehiculo, ve.idEtiqueta, e.nombre AS nombreEtiqueta, e.categoriaEtiqueta AS categoria
+                FROM VehiculoEtiqueta ve
+                INNER JOIN EtiquetaInclusiva e ON ve.idEtiqueta = e.idEtiqueta
+                WHERE ve.idVehiculo = ?
+               """;
+        List<VehiculoEtiqueta> vehiculoEtiquetas = new ArrayList<>();
+
+        try(PreparedStatement ps = dbconeccion.prepareStatement(sql)) {
+            ps.setInt(1, idVehiculo);
+            ResultSet rs = ps.executeQuery();
+
+
+            while (rs.next()) {
+                vehiculoEtiquetas.add(vehiculoEtiquetaMapper.mapRow(rs));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al consultar etiquetas del vehículo" + e.getMessage());        }
+        return vehiculoEtiquetas;
     }
 
     private void setVehiculoParams(PreparedStatement ps, Vehiculo vehiculo) throws SQLException{
