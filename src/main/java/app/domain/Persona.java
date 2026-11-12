@@ -51,11 +51,11 @@ public abstract class Persona {
 
 
     //SETTERS:
-    public void setNombre(String nombre) {this.nombre = nombre;}
+    public void setNombre(String nombre) {this.nombre = this.nombre;}
 
-    public void setApellido(String apellido) {this.apellido = apellido;}
+    public void setApellido(String apellido) {this.apellido = this.apellido;}
 
-    public void setDocumentoId(String documentoId) {this.documentoId = documentoId;}
+    public void setDocumentoId() {this.documentoId = documentoId;}
 
     public void setTelefono(String telefono) {this.telefono = telefono;}
 

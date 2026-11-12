@@ -1,5 +1,7 @@
 package app.view;
 
+import app.domain.Turista;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.InputMismatchException;
@@ -52,18 +54,35 @@ public class Consola {
             }
         }
     }
-
     public LocalDate leerFecha(String mensaje) {
         while (true) {
             System.out.println(mensaje + " Formato: yyyy-MM-dd");
             String texto = sc.nextLine().trim();
             try {
-               LocalDate fecha = LocalDate.parse(texto);
-               return fecha;
+                LocalDate fecha = LocalDate.parse(texto);
+                return fecha;
             } catch (DateTimeParseException e) {
                 System.out.println("El formato de la fecha es invalido.Formato: yyyy-MM-dd");
             }
 
+        }
+    }
+    public int leerIdTurista(String mensaje) {
+        while (true) {
+            try {
+                System.out.println(mensaje);
+                int id = Integer.parseInt(sc.nextLine().trim());
+
+                if (id <= 0) {
+                    System.out.println("El ID debe ser mayor que cero.");
+                    continue;
+                }
+
+                return id;
+
+            } catch (NumberFormatException e) {
+                System.out.println("Ingrese un ID válido.");
+            }
         }
     }
 }

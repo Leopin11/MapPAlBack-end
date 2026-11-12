@@ -43,7 +43,7 @@ public class Reserva {
         return estado;
     }
 
-    public void setEstado(EstadoReserva estado) {
+    public void setEstado() {
         this.estado = estado;
     }
 
