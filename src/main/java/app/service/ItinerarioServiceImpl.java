@@ -5,11 +5,11 @@ import app.persistence.repository.ItinerarioRepository;
 
 import java.util.List;
 
-public class ItinerarioService {
+public class ItinerarioServiceImpl {
 
     private final ItinerarioRepository itinerarioRepository;
 
-    public ItinerarioService(ItinerarioRepository itinerarioRepository) {
+    public ItinerarioServiceImpl(ItinerarioRepository itinerarioRepository) {
         this.itinerarioRepository = itinerarioRepository;
     }
 
