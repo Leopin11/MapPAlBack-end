@@ -54,7 +54,7 @@ public class VehiculoRepositoryAdapterDB implements VehiculoRepository {
             }
 
         } catch(SQLException e){
-            throw  new RuntimeException("Error akl consultar los vehiculos" + e.getMessage());
+            throw  new RuntimeException("Error al consultar los vehiculos " + e.getMessage());
         }
         return vehiculos;
     }
@@ -65,7 +65,6 @@ public class VehiculoRepositoryAdapterDB implements VehiculoRepository {
 
         try(PreparedStatement ps = dbconeccion.prepareStatement(sql)) {
             ps.setInt(1, idVehiculo);
-
             ResultSet rs = ps.executeQuery();
 
             if(rs.next()) {
@@ -73,7 +72,7 @@ public class VehiculoRepositoryAdapterDB implements VehiculoRepository {
             }
                     ;
         } catch(SQLException e){
-            throw  new RuntimeException("Error al consultar los vehiculos" + e.getMessage());
+            throw  new RuntimeException("Error al encontrar el vehículo por su ID " + e.getMessage());
         }
         return Optional.empty();
     }
@@ -97,8 +96,9 @@ public class VehiculoRepositoryAdapterDB implements VehiculoRepository {
             }
 
             return Optional.of(vehiculo);
+
         } catch(SQLException e){
-            throw  new RuntimeException("Error al consultar los vehiculos" + e.getMessage());
+            throw  new RuntimeException("No se pudo actualizar el certificado " + e.getMessage());
         }
     }
 
@@ -107,7 +107,13 @@ public class VehiculoRepositoryAdapterDB implements VehiculoRepository {
         String sql = "DELETE FROM Vehiculo WHERE idVehiculo = ? ";
         try(PreparedStatement ps = dbconeccion.prepareStatement(sql)) {
             ps.setInt(1, idVehiculo);
-            ps.executeUpdate();
+
+            int filasAfectadas = ps.executeUpdate();
+            if(filasAfectadas != 0) {
+                System.out.println("Vehiculo eliminado con exito");
+                return true;
+            }
+
         } catch(SQLException e){
             throw  new RuntimeException("Error al eliminar el vehiculo" + e.getMessage());
         }
@@ -138,11 +144,11 @@ public class VehiculoRepositoryAdapterDB implements VehiculoRepository {
     }
 
     private void setVehiculoParams(PreparedStatement ps, Vehiculo vehiculo) throws SQLException{
-       ps.setInt(1,vehiculo.getIdVehiculo());
-       ps.setString(2,vehiculo.getPlaca());
-       ps.setString(3,vehiculo.getMarca());
-       ps.setInt(4,vehiculo.getCapacidadPasajeros());
-       ps.setBoolean(5,vehiculo.isBaulCapacidadSilla());
-       ps.setBoolean(6,vehiculo.isRutaSinEscalones());
+       ps.setInt(1, vehiculo.getIdVehiculo());
+       ps.setString(2, vehiculo.getPlaca());
+       ps.setString(3, vehiculo.getMarca());
+       ps.setInt(4, vehiculo.getCapacidadPasajeros());
+       ps.setBoolean(5, vehiculo.isBaulCapacidadSilla());
+       ps.setBoolean(6, vehiculo.isRutaSinEscalones());
     }
 }

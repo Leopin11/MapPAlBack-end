@@ -9,6 +9,6 @@ public interface CertificadoRepository {
     Certificado guardarCertificado(Certificado certificado);
     List<Certificado> certificadosRegistrados();
     Optional<Certificado> buscarCertificadoPorId(int idCertificado);
-    Optional<Certificado> actualizarCertificado(Certificado certificado);
+    Optional<Certificado> actualizarCertificado(int idCertificado, Certificado certificado);
     boolean eliminarCertificadoPorId(int idCertificado);
 }
