@@ -1,7 +1,14 @@
 package app.configuration;
 
-import app.repository.CertificadoRepositoryImpl;
-import app.repository.VehiculoRepositoryImpl;
+import app.domain.Vehiculo;
+import app.domain.relations.VehiculoEtiqueta;
+import app.persistence.dbconnection.DataBaseConnection;
+import app.persistence.mapper.RowMapper;
+import app.persistence.mapper.VehiculoEtiquetaMapper;
+import app.persistence.mapper.VehiculoMapper;
+import app.persistence.repository.CertificadoRepositoryImpl;
+import app.persistence.repository.VehiculoRepositoryAdapterDB;
+import app.persistence.repository.VehiculoRepositoryImpl;
 import app.service.CertificadoServiceImpl;
 import app.service.VehiculoServiceImpl;
 import app.service.inputport.CertificadoService;
@@ -13,14 +20,20 @@ import app.view.CertificadoView;
 import app.view.VehiculoView;
 import app.view.Consola;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Config {
 
-    public UserInterface construirUserInterface(Scanner scanner) {
+    public UserInterface construirUserInterface(Scanner scanner) throws SQLException {
+        Connection coneccion = DataBaseConnection.getInstance().getConnection();
+        RowMapper<Vehiculo> rowMapperV = new VehiculoMapper();
+        RowMapper<VehiculoEtiqueta> rowMapperVE = new VehiculoEtiquetaMapper();
         Consola consola = new Consola(scanner);
 
-        VehiculoRepository vehiculoRepository = new VehiculoRepositoryImpl();
+
+        VehiculoRepository vehiculoRepository = new VehiculoRepositoryAdapterDB(coneccion, (VehiculoMapper) rowMapperV, (VehiculoEtiquetaMapper) rowMapperVE);
         VehiculoService vehiculoService = new VehiculoServiceImpl(vehiculoRepository);
         VehiculoView vehiculoView = new VehiculoView(vehiculoService, consola);
 

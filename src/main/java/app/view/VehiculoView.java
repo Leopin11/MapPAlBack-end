@@ -1,6 +1,7 @@
 package app.view;
 
 import app.domain.Vehiculo;
+import app.domain.relations.VehiculoEtiqueta;
 import app.service.inputport.VehiculoService;
 
 import java.util.List;
@@ -57,7 +58,11 @@ public class VehiculoView {
 
         Optional<Vehiculo> encontrado = vehiculoService.buscarVehiculoPorId(id);
         if(encontrado.isPresent()) {
-            System.out.println("Se encontró el Vehículo con ID: " + encontrado.get().getIdVehiculo());
+            System.out.println("Se encontró el Vehículo con ID: " + encontrado.get().getIdVehiculo()
+                    +       "\n  Placa: " + encontrado.get().getPlaca() +
+                            "\n  Marca: " + encontrado.get().getMarca() +
+                            "\n  Capacidad de Pasajeros: " + encontrado.get().getCapacidadPasajeros() +
+                            "\n  Baúl Grande: " + encontrado.get().isBaulCapacidadSilla());
         } else {
             System.out.println("No se encontró el Vehículo con el ID: " + id);
         }
@@ -103,6 +108,22 @@ public class VehiculoView {
         }
     }
 
+    private void mostrarEtiquetasDeVehiculo() {
+        System.out.println("==== Mostrar Etiquetas del Vehiculo =====");
+
+        int id = consola.leerEntero("Digita el id del Vehiculo");
+        List<VehiculoEtiqueta> etiquetas = vehiculoService.obtenerEtiquetasDeVehiculo(id);
+
+        if (etiquetas.isEmpty()) {
+            System.out.println("Vehiculo no tiene etiqueta asignada");
+        } else {
+            for(VehiculoEtiqueta vehiculoEtiqueta : etiquetas) {
+                System.out.println("Nombre de la etiqueta: " + vehiculoEtiqueta.getNombreEtiqueta()
+                        + "\n Categoria de la etiqueta: " + vehiculoEtiqueta.getCategoria());
+            }
+        }
+    }
+
     public void mostrarMenuVehiculos() {
         int opcion = 0;
         do {
@@ -113,7 +134,8 @@ public class VehiculoView {
                     3. Buscar un Vehículo por su ID.
                     4. Actualizar.
                     5. Eliminar Vehículo por su ID.
-                    6. Regresar al Menu Principal.
+                    6. Motrar etiquetas de un Vehículo por su ID.
+                    7. Regresar al Menu Principal.
                     """);
 
             opcion = consola.leerEntero("Elige una opción:");
@@ -135,13 +157,16 @@ public class VehiculoView {
                     eliminar();
                     break;
                 case 6:
+                    mostrarEtiquetasDeVehiculo();
+                    break;
+                case 7:
                     System.out.println("Regresar al menu principal");
                     break;
                 default:
                     System.out.println("Ingresa una opcion del menu que sea valida.");
             }
 
-        } while (opcion != 6);
+        } while (opcion != 7);
 
     }
 }

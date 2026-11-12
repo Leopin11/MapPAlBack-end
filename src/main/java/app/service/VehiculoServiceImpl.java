@@ -1,6 +1,7 @@
 package app.service;
 
 import app.domain.Vehiculo;
+import app.domain.relations.VehiculoEtiqueta;
 import app.service.inputport.VehiculoService;
 import app.service.outputport.VehiculoRepository;
 
@@ -46,7 +47,7 @@ public class VehiculoServiceImpl implements VehiculoService {
         actualizado.setBaulCapacidadSilla(baulCapacidadSilla);
 
         //Pido al repositorio que persista la nueva versión.
-        return vehiculoRepository.actualizarVehiculo(actualizado);
+        return vehiculoRepository.actualizarVehiculo(idVehiculo,actualizado);
     }
 
     @Override
@@ -63,5 +64,10 @@ public class VehiculoServiceImpl implements VehiculoService {
     public boolean eliminarVehiculoPorId(int idVehiculo) {
         // Devuelve true si borró algo, false si ese ID no existía.
         return vehiculoRepository.eliminarVehiculoPorId(idVehiculo);
+    }
+
+    @Override
+    public List<VehiculoEtiqueta> obtenerEtiquetasDeVehiculo(int idVehiculo) {
+        return  vehiculoRepository.obtenerEtiquetasDeVehiculo(idVehiculo);
     }
 }

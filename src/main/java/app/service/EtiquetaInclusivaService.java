@@ -1,7 +1,7 @@
 package app.service;
 
 import app.domain.EtiquetaInclusiva;
-import app.repository.EtiquetaInclusivaRepository;
+import app.persistence.repository.EtiquetaInclusivaRepository;
 
 import java.util.List;
 
