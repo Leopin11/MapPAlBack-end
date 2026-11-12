@@ -118,8 +118,8 @@ public class VehiculoView {
             System.out.println("Vehiculo no tiene etiqueta asignada");
         } else {
             for(VehiculoEtiqueta vehiculoEtiqueta : etiquetas) {
-                System.out.println("Nombre de la etiqueta: " + vehiculoEtiqueta.getNombreEtiqueta()
-                        + "\n Categoria de la etiqueta: " + vehiculoEtiqueta.getCategoria());
+                System.out.println("-> Nombre de la etiqueta: " + vehiculoEtiqueta.getNombreEtiqueta()
+                        + "\n->  Categoria de la etiqueta: " + vehiculoEtiqueta.getCategoria());
             }
         }
     }

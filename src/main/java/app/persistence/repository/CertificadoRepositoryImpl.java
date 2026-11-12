@@ -35,7 +35,7 @@ public class CertificadoRepositoryImpl implements CertificadoRepository {
     }
 
     @Override
-    public Optional<Certificado> actualizarCertificado(Certificado certificado) {
+    public Optional<Certificado> actualizarCertificado(int idCertificado, Certificado certificado) {
         for (int i = 0; i < this.certificados.size(); i++) {
             if (this.certificados.get(i).getIdCertificado() == certificado.getIdCertificado()) {
                 this.certificados.set(i, certificado);

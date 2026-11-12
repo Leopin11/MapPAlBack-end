@@ -1,14 +1,15 @@
 package app.configuration;
 
+import app.domain.Certificado;
 import app.domain.Vehiculo;
 import app.domain.relations.VehiculoEtiqueta;
 import app.persistence.dbconnection.DataBaseConnection;
+import app.persistence.mapper.CertificadoMapper;
 import app.persistence.mapper.RowMapper;
 import app.persistence.mapper.VehiculoEtiquetaMapper;
 import app.persistence.mapper.VehiculoMapper;
-import app.persistence.repository.CertificadoRepositoryImpl;
+import app.persistence.repository.CertificadoRepositoryAdapterDB;
 import app.persistence.repository.VehiculoRepositoryAdapterDB;
-import app.persistence.repository.VehiculoRepositoryImpl;
 import app.service.CertificadoServiceImpl;
 import app.service.VehiculoServiceImpl;
 import app.service.inputport.CertificadoService;
@@ -27,17 +28,19 @@ import java.util.Scanner;
 public class Config {
 
     public UserInterface construirUserInterface(Scanner scanner) throws SQLException {
+        Consola consola = new Consola(scanner);
         Connection coneccion = DataBaseConnection.getInstance().getConnection();
         RowMapper<Vehiculo> rowMapperV = new VehiculoMapper();
         RowMapper<VehiculoEtiqueta> rowMapperVE = new VehiculoEtiquetaMapper();
-        Consola consola = new Consola(scanner);
+        RowMapper<Certificado> rowMapperC = new CertificadoMapper();
+
 
 
         VehiculoRepository vehiculoRepository = new VehiculoRepositoryAdapterDB(coneccion, (VehiculoMapper) rowMapperV, (VehiculoEtiquetaMapper) rowMapperVE);
         VehiculoService vehiculoService = new VehiculoServiceImpl(vehiculoRepository);
         VehiculoView vehiculoView = new VehiculoView(vehiculoService, consola);
 
-        CertificadoRepository certificadoRepository = new CertificadoRepositoryImpl();
+        CertificadoRepository certificadoRepository = new CertificadoRepositoryAdapterDB(coneccion, (CertificadoMapper) rowMapperC);
         CertificadoService certificadoService = new CertificadoServiceImpl(certificadoRepository);
         CertificadoView certificadoView = new CertificadoView(certificadoService, consola);
 
