@@ -6,7 +6,6 @@ import app.domain.Reserva;
 import app.domain.Turista;
 import app.domain.enums.EstadoReserva;
 
-import app.persistence.repository.ReservaRepositoryImpl;
 import app.service.inputport.ReservaService;
 import app.service.outputport.ReservaRepository;
 
@@ -18,7 +17,7 @@ public class ReservaServiceImpl implements ReservaService {
 
     private final ReservaRepository reservaRepository;
 
-    public ReservaServiceImpl(ReservaRepositoryImpl reservaRepository) {
+    public ReservaServiceImpl(ReservaRepository reservaRepository) {
        this.reservaRepository = reservaRepository;
     }
 
@@ -40,13 +39,13 @@ public class ReservaServiceImpl implements ReservaService {
         }
         Reserva actualizada = existente.get();
         actualizada.setFechaReserva(fechaReserva);
-        actualizada.setEstado();
+        actualizada.setEstado(estado);
         actualizada.setMontoTotal(montoTotal);
         actualizada.setTurista(turista);
         actualizada.setPrestadorLocal(prestadorLocal);
         actualizada.setItinerario(itinerario);
 
-        return reservaRepository.actualizarReserva(actualizada);
+        return reservaRepository.actualizarReserva(idReserva, actualizada);
     }
 
     @Override

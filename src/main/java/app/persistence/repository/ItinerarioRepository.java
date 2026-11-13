@@ -15,7 +15,7 @@ public class ItinerarioRepository {
     }
 
     public void guardarItinerario(Itinerario itinerario){
-        this.itinerarios = new ArrayList<>();
+        this.itinerarios.add(itinerario);
     }
 
     public List<Itinerario> itinerariosRegistrados(){

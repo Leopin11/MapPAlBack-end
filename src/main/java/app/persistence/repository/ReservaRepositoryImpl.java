@@ -3,12 +3,11 @@ package app.persistence.repository;
 import app.domain.Reserva;
 import app.service.outputport.ReservaRepository;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-public class ReservaRepositoryImpl implements ReservaRepository {
+public abstract class ReservaRepositoryImpl implements ReservaRepository {
     private final List<Reserva> reservas;
 
     public ReservaRepositoryImpl(List<Reserva> reservas) {
@@ -38,7 +37,7 @@ public class ReservaRepositoryImpl implements ReservaRepository {
     }
 
     @Override
-    public Optional<Reserva> actualizarReserva(Reserva reserva) {
+    public Optional<Reserva> actualizarReserva(int idReserva, Reserva reserva) {
         for (int i = 0; i < this.reservas.size(); i++) {
             if (this.reservas.get(i).getIdReserva() == reserva.getIdReserva()) {
                 this.reservas.set(i, reserva);
@@ -47,6 +46,7 @@ public class ReservaRepositoryImpl implements ReservaRepository {
         }
         return Optional.empty();
     }
+
 
     @Override
     public boolean eliminarReservaPorId(int idReserva) {
