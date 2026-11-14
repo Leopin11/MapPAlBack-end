@@ -51,4 +51,15 @@ public class ItinerarioServiceImpl implements ItinerarioService {
         //Si pasa estas validaciones, entonces se solicita la actualización. Ahora no hay necesidad de ofNullabel porque ambos métodos de actualizar en ambos puertos ya son Optional:
         return itinerarioRepository.actualizarItinerario(itinerario);
     }
+
+//    public List<Itinerario> mostrarItinerarios(){
+//        return itinerarioRepository.itinerariosRegistrados();
+//    }
+//    public Itinerario buscarId(int idItinerario){
+//        return itinerarioRepository.buscarIdItinerarios(idItinerario);
+//    }
+//
+//    public void eliminarItinerario(int idItinerario){
+//        itinerarioRepository.eliminarItinerario(idItinerario);
+//    }
 }
