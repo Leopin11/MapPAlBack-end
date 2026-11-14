@@ -5,11 +5,10 @@ import app.domain.PrestadorLocal;
 import app.domain.Reserva;
 import app.domain.Turista;
 import app.domain.enums.EstadoReserva;
-import app.service.ItinerarioService;
 import app.service.inputport.PrestadorLocalService;
 import app.service.inputport.ReservaService;
 import app.service.inputport.TuristaService;
-
+import app.service.inputport.ItinerarioService;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -178,7 +177,7 @@ public class ReservaView {
 
     private Optional<Itinerario> buscarItinerario() {
         int id = consola.leerEntero("Ingrese el ID del itinerario:");
-        Optional<Itinerario> i = Optional.ofNullable(itinerarioService.buscarId(id));
+        Optional<Itinerario> i = itinerarioService.buscarItinerarioPorId(id);
         if (i.isEmpty()) System.out.println("No existe un itinerario con el ID " + id);
         return i;
     }

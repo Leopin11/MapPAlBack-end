@@ -40,7 +40,7 @@ public class CertificadoServiceImpl implements CertificadoService {
         actualizado.setEntidadEmisora(entidadEmisora);
         actualizado.setFechaObtencion(fechaObtencion);
 
-        return certificadoRepository.actualizarCertificado(actualizado);
+        return certificadoRepository.actualizarCertificado(idCertificado, actualizado);
     }
 
     @Override

@@ -39,22 +39,24 @@ public class Config {
         CertificadoService certificadoService = new CertificadoServiceImpl(certificadoRepository);
         CertificadoView certificadoView = new CertificadoView(certificadoService, consola);
 
-        // ==================== DATOS TEMPORALES (reflejan MAPPALDB) ====================
         TuristaRepository turistaRepository = new TuristaRepositoryImpl(DatosSemilla.turistas());
         TuristaService turistaService = new TuristaServiveImpl(turistaRepository);
 
-        PrestadorLocalRepository prestadorLocalRepository = new PrestadorLocalRepositoryImpl(new ArrayList<>(DatosSemilla.prestadores()));
+        PrestadorLocalRepository prestadorLocalRepository =
+                new PrestadorLocalRepositoryImpl(new ArrayList<>(DatosSemilla.prestadores()));
         PrestadorLocalService prestadorLocalService = new PrestadorLocalServiceImpl(prestadorLocalRepository);
 
-        ItinerarioRepository itinerarioRepository = new ItinerarioRepository();
+        ItinerarioRepository itinerarioRepository = new ItinerarioRepositoryTemporal();
         DatosSemilla.itinerarios().forEach(itinerarioRepository::guardarItinerario);
-        ItinerarioService itinerarioService = new ItinerarioService(itinerarioRepository);
+        ItinerarioService itinerarioService = new ItinerarioServiceImpl(itinerarioRepository);
 
-        // ==================== RESERVA (ya es real) ====================
-        ReservaRepository reservaRepository = new ReservaRepositoryAdapterDB(coneccion, new ReservaMapper(), turistaRepository, prestadorLocalRepository, itinerarioRepository);
+        // ==================== RESERVA ====================
+        ReservaRepository reservaRepository = new ReservaRepositoryAdapterDB(
+                coneccion, new ReservaMapper(), turistaRepository, prestadorLocalRepository, itinerarioRepository);
         ReservaService reservaService = new ReservaServiceImpl(reservaRepository);
         ReservaView reservaView = new ReservaView(
                 reservaService, turistaService, prestadorLocalService, itinerarioService, consola);
+
 
         return new UserInterface(vehiculoView, certificadoView, reservaView, consola);
     }

@@ -8,6 +8,8 @@ public class Certificado {
     private String entidadEmisora;
     private LocalDate fechaObtencion;
 
+    public Certificado() {};
+
     public Certificado(int idCertificado, String nombre, String entidadEmisora, LocalDate fechaObtencion) {
         this.idCertificado = idCertificado;
         this.nombre = nombre;
@@ -40,7 +42,7 @@ public class Certificado {
     }
 
     public LocalDate getFechaObtencion() {
-        return fechaObtencion;
+        return this.fechaObtencion;
     }
 
     public void setFechaObtencion(LocalDate fechaObtencion) {

@@ -5,7 +5,7 @@ import app.persistence.mapper.ReservaMapper;
 import app.service.outputport.PrestadorLocalRepository;
 import app.service.outputport.ReservaRepository;
 import app.service.outputport.TuristaRepository;
-
+import app.service.outputport.ItinerarioRepository;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -131,7 +131,7 @@ public class ReservaRepositoryAdapterDB implements ReservaRepository {
         Reserva r = fila.reserva();
         r.setTurista(turistaRepository.buscarTuristaPorId(fila.idTurista()).orElse(null));
         r.setPrestadorLocal(prestadorLocalRepository.buscarPrestadorPorId(fila.idPrestador()).orElse(null));
-        r.setItinerario(itinerarioRepository.buscarIdItinerarios(fila.idItinerario()));
+        r.setItinerario(itinerarioRepository.buscarItinerarioPorId(fila.idItinerario()).orElse(null));
         return r;
     }
 }
