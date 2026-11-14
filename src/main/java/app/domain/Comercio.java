@@ -37,6 +37,10 @@ public class Comercio implements PrestadorLocal {
     @Override
     public void registrarCertificado(Certificado c) {
     }
+    @Override
+    public int getIdPrestador() {
+        return idComercio;
+    }
 
 
     //GETTERS:

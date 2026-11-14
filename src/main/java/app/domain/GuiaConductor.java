@@ -27,6 +27,11 @@ public class GuiaConductor extends Persona implements PrestadorLocal {
     @Override
     public void registrarCertificado(Certificado c) {}  //AÚN NO EXISTE "Certificado" (CARLOS).
 
+    @Override
+    public int getIdPrestador() {
+        return getIdPersona();
+    }
+
     //MÉTODOS HEREDADOS:
     @Override
     public int calcularEdad() {return super.calcularEdad();}

@@ -23,6 +23,10 @@ public class Reserva {
         this.itinerario = itinerario;
     }
 
+    public Reserva() {
+
+    }
+
     public int getIdReserva() {
         return idReserva;
     }
@@ -41,10 +45,6 @@ public class Reserva {
 
     public EstadoReserva getEstado() {
         return estado;
-    }
-
-    public void setEstado(EstadoReserva estado) {
-        this.estado = estado;
     }
 
     public double getMontoTotal() {
@@ -77,5 +77,8 @@ public class Reserva {
 
     public void setItinerario(Itinerario itinerario) {
         this.itinerario = itinerario;
+    }
+
+    public void setEstado(EstadoReserva estadoReserva) {
     }
 }

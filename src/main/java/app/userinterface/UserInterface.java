@@ -3,18 +3,21 @@ package app.userinterface;
 import app.persistence.dbconnection.DataBaseConnection;
 import app.view.CertificadoView;
 import app.view.Consola;
+import app.view.ReservaView;
 import app.view.VehiculoView;
 
 
 public class UserInterface {
     private final VehiculoView vehiculoView;
     private final CertificadoView certificadoView;
+    private final ReservaView reservaView;
     private final Consola consola;
 
 
-    public UserInterface(VehiculoView vehiculoView, CertificadoView certificadoView, Consola consola) {
+    public UserInterface(VehiculoView vehiculoView, CertificadoView certificadoView, ReservaView reservaView, Consola consola) {
         this.vehiculoView = vehiculoView;
         this.certificadoView = certificadoView;
+        this.reservaView = reservaView;
         this.consola = consola;
     }
 
@@ -30,6 +33,7 @@ public class UserInterface {
             opcion = consola.leerEntero("""
                     ----- Selecciona Una Opcion ------
                     1.Vehiculos.
+                    2.Reservas.
                     4.Certificados
                     6.Salir.
                     
@@ -40,7 +44,7 @@ public class UserInterface {
                     vehiculoView.mostrarMenuVehiculos();
                     break;
                 case 2:
-                    // C-Reservas;
+                    reservaView.mostrarMenuReservas();
                     break;
                 case 3:
                     // A-Itinerarios
