@@ -18,7 +18,7 @@ public class ItinerarioServiceImpl implements ItinerarioService {
     //PRIMER MÉT.ODO registrarItinerario():
     @Override
     public Optional<Itinerario> registrarItinerario(Itinerario itinerario) {
-        //PRIMERO VALIDAMOS QUE EL ID NO EXISTA. SI YA EXISTE, DEVOLVERÁ UN OPTIONAL VACIO.
+        //PRIMERO VALIDAMOS QUE EL ITINERARIO NO SEA NULL. SI LO ES, DEVOLVERÁ UN OPTIONAL VACIO.
         if (itinerario == null) {
             return Optional.empty();
         }
@@ -35,6 +35,7 @@ public class ItinerarioServiceImpl implements ItinerarioService {
         return Optional.ofNullable(itinerarioGuardado);
     }
 
+
     //SEGUNDO MÉT.ODO: actualizarItinerario():
     @Override
     public Optional<Itinerario> actualizarItinerario(Itinerario itinerario) {
@@ -43,23 +44,30 @@ public class ItinerarioServiceImpl implements ItinerarioService {
             return Optional.empty();
         }
 
-        //Validamos que el itinerario exista, ya que no tiene sentido actualizar algo que no está registrado:
-        if (itinerarioRepository.buscarItinerarioPorId(itinerario.getIdItinerario()).isEmpty()) {
-            return Optional.empty();
-        }
-
         //Si pasa estas validaciones, entonces se solicita la actualización. Ahora no hay necesidad de ofNullabel porque ambos métodos de actualizar en ambos puertos ya son Optional:
         return itinerarioRepository.actualizarItinerario(itinerario);
     }
 
-//    public List<Itinerario> mostrarItinerarios(){
-//        return itinerarioRepository.itinerariosRegistrados();
-//    }
-//    public Itinerario buscarId(int idItinerario){
-//        return itinerarioRepository.buscarIdItinerarios(idItinerario);
-//    }
-//
-//    public void eliminarItinerario(int idItinerario){
-//        itinerarioRepository.eliminarItinerario(idItinerario);
-//    }
+
+    //TERCER MÉT.ODO: listarItinierarios():
+    @Override
+    public List<Itinerario> listarItinerarios() {
+        return itinerarioRepository.itinerariosRegistrados(); //Llama al mét.odo de la interfaz de salida, recibe la lista de itinerarios y la devuelve a quien llamó a listarItinerarios.
+    }
+
+
+    //CUARTO MÉT.ODO: buscarItinerarioPorId():
+    @Override
+    public Optional<Itinerario> buscarItinerarioPorId(int idItinerario) {
+        //A continuación, devolvemos directamente el Optional recibido del repositorio. Si no encuentra el itinerario, el repositorio debe devolver Optional.empty().
+        return itinerarioRepository.buscarItinerarioPorId(idItinerario);
+    }
+
+
+    //QUINTO MÉT.ODO: eliminarItinerarioPorId():
+    @Override
+    public boolean eliminarItinerarioPorId(int idItinerario) {
+        return itinerarioRepository.eliminarItinerarioPorId(idItinerario);
+        //No validaremos que exista primero, ESO LO HAREMOS EN EL REPOSITORY!!
+    }
 }
