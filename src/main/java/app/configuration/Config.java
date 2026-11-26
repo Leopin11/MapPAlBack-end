@@ -1,25 +1,18 @@
 package app.configuration;
 
-import app.domain.Vehiculo;
+import app.domain.*;
 import app.domain.relations.VehiculoEtiqueta;
 import app.persistence.dbconnection.DataBaseConnection;
-import app.persistence.mapper.ReservaMapper;
-import app.persistence.mapper.RowMapper;
-import app.persistence.mapper.VehiculoEtiquetaMapper;
-import app.persistence.mapper.VehiculoMapper;
+import app.persistence.mapper.*;
 import app.persistence.repository.*;
 import app.service.*;
 import app.service.inputport.*;
 import app.service.outputport.*;
 import app.userinterface.UserInterface;
-import app.view.CertificadoView;
-import app.view.ReservaView;
-import app.view.VehiculoView;
-import app.view.Consola;
+import app.view.*;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Config {
@@ -28,6 +21,7 @@ public class Config {
         Connection coneccion = DataBaseConnection.getInstance().getConnection();
         RowMapper<Vehiculo> rowMapperV = new VehiculoMapper();
         RowMapper<VehiculoEtiqueta> rowMapperVE = new VehiculoEtiquetaMapper();
+        ItinerarioMapper itinerarioMapper = new ItinerarioMapper();
         Consola consola = new Consola(scanner);
 
 
@@ -39,25 +33,36 @@ public class Config {
         CertificadoService certificadoService = new CertificadoServiceImpl(certificadoRepository);
         CertificadoView certificadoView = new CertificadoView(certificadoService, consola);
 
-        TuristaRepository turistaRepository = new TuristaRepositoryImpl(DatosSemilla.turistas());
+        // Turista
+        TuristaMapper turistaMapper = new TuristaMapper();
+        TuristaRepository turistaRepository = new TuristaRepositorioAdapterDB(coneccion, turistaMapper);
         TuristaService turistaService = new TuristaServiveImpl(turistaRepository);
+        TuristaView turistaView = new TuristaView(turistaService, consola);
 
-        PrestadorLocalRepository prestadorLocalRepository =
-                new PrestadorLocalRepositoryImpl(new ArrayList<>(DatosSemilla.prestadores()));
-        PrestadorLocalService prestadorLocalService = new PrestadorLocalServiceImpl(prestadorLocalRepository);
-
-        ItinerarioRepository itinerarioRepository = new ItinerarioRepositoryTemporal();
-        DatosSemilla.itinerarios().forEach(itinerarioRepository::guardarItinerario);
+// Itinerario
+        ItinerarioRepository itinerarioRepository = new ItinerarioRepositoryAdapterDB(coneccion, new ItinerarioMapper());
         ItinerarioService itinerarioService = new ItinerarioServiceImpl(itinerarioRepository);
+        ItinerarioView itinerarioView = new ItinerarioView(itinerarioService, consola);
 
-        // ==================== RESERVA ====================
-        ReservaRepository reservaRepository = new ReservaRepositoryAdapterDB(
-                coneccion, new ReservaMapper(), turistaRepository, prestadorLocalRepository, itinerarioRepository);
+// GuiaConductor
+        GuiaConductorRepository guiaConductorRepository = new GuiaConductorRepositoryAdapterDB(coneccion, new GuiaConductorMapper());
+        GuiaConductorService guiaConductorService = new GuiaConductorServicioImpl(guiaConductorRepository);
+        GuiaConductorView guiaConductorView = new GuiaConductorView(guiaConductorService,consola);
+
+        // Comercio
+        ComercioMapper comercioMapper = new ComercioMapper();
+        ComercioRepository comercioRepository = new ComercioRepositoryAdapterDB(coneccion, comercioMapper);
+        ComercioService comercioService = new ComercioServicioImpl(comercioRepository);
+        ComercioView comercioView = new ComercioView(comercioService, consola);
+
+
+        // Reserva
+        ReservaMapper reservaMapper = new ReservaMapper();
+        ReservaRepository reservaRepository = new ReservaRepositoryAdapterDB(coneccion, reservaMapper,
+                turistaMapper, itinerarioMapper, guiaConductorRepository, comercioRepository);
         ReservaService reservaService = new ReservaServiceImpl(reservaRepository);
-        ReservaView reservaView = new ReservaView(
-                reservaService, turistaService, prestadorLocalService, itinerarioService, consola);
+        ReservaView reservaView = new ReservaView(reservaService, turistaService, itinerarioService, guiaConductorService, consola);
 
-
-        return new UserInterface(vehiculoView, certificadoView, reservaView, consola);
+        return new UserInterface(vehiculoView, certificadoView, reservaView, turistaView, guiaConductorView, itinerarioView,comercioView,consola);
     }
 }

@@ -1,11 +1,8 @@
 package app.view;
 
-import app.domain.Itinerario;
-import app.domain.PrestadorLocal;
-import app.domain.Reserva;
-import app.domain.Turista;
+import app.domain.*;
 import app.domain.enums.EstadoReserva;
-import app.service.inputport.PrestadorLocalService;
+import app.service.inputport.GuiaConductorService;
 import app.service.inputport.ReservaService;
 import app.service.inputport.TuristaService;
 import app.service.inputport.ItinerarioService;
@@ -16,19 +13,18 @@ import java.util.Optional;
 public class ReservaView {
     private final ReservaService reservaService;
     private final TuristaService turistaService;
-    private final PrestadorLocalService prestadorLocalService;
     private final ItinerarioService itinerarioService;
+    private final GuiaConductorService guiaConductorService;
     private final Consola consola;
 
-    public ReservaView(ReservaService reservaService, TuristaService turistaService,
-                       PrestadorLocalService prestadorLocalService, ItinerarioService itinerarioService,
-                       Consola consola) {
+    public ReservaView(ReservaService reservaService, TuristaService turistaService, ItinerarioService itinerarioService, GuiaConductorService guiaConductorService, Consola consola) {
         this.reservaService = reservaService;
         this.turistaService = turistaService;
-        this.prestadorLocalService = prestadorLocalService;
         this.itinerarioService = itinerarioService;
+        this.guiaConductorService = guiaConductorService;
         this.consola = consola;
     }
+
 
     public void mostrarMenuReservas() {
         int opcion;
@@ -65,7 +61,7 @@ public class ReservaView {
         Optional<Turista> turista = buscarTurista();
         if (turista.isEmpty()) return;
 
-        Optional<PrestadorLocal> prestador = buscarPrestador();
+        Optional<GuiaConductor> prestador = buscarPrestador();
         if (prestador.isEmpty()) return;
 
         Optional<Itinerario> itinerario = buscarItinerario();
@@ -116,7 +112,7 @@ public class ReservaView {
 
         Optional<Turista> turista = buscarTurista();
         if (turista.isEmpty()) return;
-        Optional<PrestadorLocal> prestador = buscarPrestador();
+        Optional<GuiaConductor> prestador = buscarPrestador();
         if (prestador.isEmpty()) return;
         Optional<Itinerario> itinerario = buscarItinerario();
         if (itinerario.isEmpty()) return;
@@ -147,6 +143,19 @@ public class ReservaView {
                 + "\n  Fecha: " + r.getFechaReserva()
                 + "\n  Estado: " + r.getEstado()
                 + "\n  Monto: " + r.getMontoTotal());
+
+        PrestadorLocal p = r.getPrestadorLocal();
+        String prestador;
+        if (p == null) {
+            prestador = "Sin prestador";
+        } else if (p instanceof GuiaConductor g) {
+            prestador = "Guía: " + g.getNombre() + " " + g.getApellido();
+        } else if (p instanceof Comercio c) {
+            prestador = "Comercio: " + c.getNombreComercio();
+        } else {
+            prestador = "Desconocido";
+        }
+        System.out.println("  Prestador: " + prestador);
     }
 
     private EstadoReserva pedirEstado() {
@@ -168,9 +177,9 @@ public class ReservaView {
         return t;
     }
 
-    private Optional<PrestadorLocal> buscarPrestador() {
+    private Optional<GuiaConductor> buscarPrestador() {
         int id = consola.leerEntero("Ingrese el ID del prestador local:");
-        Optional<PrestadorLocal> p = prestadorLocalService.buscarPrestadorPorId(id);
+        Optional<GuiaConductor> p = guiaConductorService.buscarGuiaConductor(id);
         if (p.isEmpty()) System.out.println("No existe un prestador local con el ID " + id);
         return p;
     }

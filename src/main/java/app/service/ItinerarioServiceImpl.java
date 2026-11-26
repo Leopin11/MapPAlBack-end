@@ -14,37 +14,52 @@ public class ItinerarioServiceImpl implements ItinerarioService {
     public ItinerarioServiceImpl(ItinerarioRepository itinerarioRepository) {
         this.itinerarioRepository = itinerarioRepository;
     }
-    // ...el resto de métodos se queda igual
 
-    public Optional<Itinerario> registrarItinerario(Itinerario itinerario){
-        if (itinerario == null){
-            System.out.println("El itinerario no puede estar nulo");
-            return null;
+    @Override
+    public Optional<Itinerario> registrarItinerario(Itinerario itinerario) {
+        validarItinerario(itinerario);
+        if (itinerarioRepository.buscarItinerarioPorId(itinerario.getIdItinerario()).isPresent()) {
+            return Optional.empty();
         }
-        System.out.println("Itinerario agregado con existo");
-        itinerarioRepository.guardarItinerario(itinerario);
-        return null;
+        return Optional.of(itinerarioRepository.guardarItinerario(itinerario));
     }
 
     @Override
     public Optional<Itinerario> actualizarItinerario(Itinerario itinerario) {
-        return Optional.empty();
+        validarItinerario(itinerario);
+        return itinerarioRepository.actualizarItinerario(itinerario);
     }
 
     @Override
     public List<Itinerario> listarItinerarios() {
-        return List.of();
+        return itinerarioRepository.itinerariosRegistrados();
     }
 
     @Override
     public Optional<Itinerario> buscarItinerarioPorId(int idItinerario) {
-        return Optional.empty();
+        return itinerarioRepository.buscarItinerarioPorId(idItinerario);
     }
 
     @Override
     public boolean eliminarItinerarioPorId(int idItinerario) {
-        return false;
+        return itinerarioRepository.eliminarItinerarioPorId(idItinerario);
     }
 
-
+    private void validarItinerario(Itinerario itinerario) {
+        if (itinerario == null) {
+            throw new IllegalArgumentException("El itinerario no puede ser nulo");
+        }
+        if (itinerario.getDestino() == null || itinerario.getDestino().isBlank()) {
+            throw new IllegalArgumentException("El destino es obligatorio");
+        }
+        if (itinerario.getFechaDeInicio() == null || itinerario.getFechaFin() == null) {
+            throw new IllegalArgumentException("Las fechas son obligatorias");
+        }
+        if (itinerario.getFechaFin().isBefore(itinerario.getFechaDeInicio())) {
+            throw new IllegalArgumentException("La fecha de fin no puede ser anterior a la fecha de inicio");
+        }
+        if (itinerario.getNivelEstimulacion() == null) {
+            throw new IllegalArgumentException("El nivel de estimulación es obligatorio");
+        }
+    }
 }

@@ -5,4 +5,5 @@ public enum TipoComercio {
     ARTESANIAS,
     SERVICIOS,
     OTROS;
+
 }

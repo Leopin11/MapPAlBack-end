@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-public abstract class ReservaRepositoryImpl implements ReservaRepository {
+public class ReservaRepositoryImpl implements ReservaRepository {
     private final List<Reserva> reservas;
 
     public ReservaRepositoryImpl(List<Reserva> reservas) {

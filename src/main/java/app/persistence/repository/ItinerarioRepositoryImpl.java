@@ -3,16 +3,13 @@ package app.persistence.repository;
 import app.domain.Itinerario;
 import app.service.outputport.ItinerarioRepository;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
-public class ItinerarioRepositoryTemporal implements ItinerarioRepository {
+public class ItinerarioRepositoryImpl implements ItinerarioRepository {
 
     private List<Itinerario> itinerarios;
 
-    public ItinerarioRepositoryTemporal(){
+    public ItinerarioRepositoryImpl(){
         this.itinerarios = new ArrayList<>();
     }
 
@@ -37,7 +34,7 @@ public class ItinerarioRepositoryTemporal implements ItinerarioRepository {
     @Override
     public Optional<Itinerario> actualizarItinerario(Itinerario itinerario) {
         for (int i = 0; i < itinerarios.size(); i++) {
-            if (itinerarios.get(i).getIdItinerario() == itinerario.getIdItinerario()) {
+            if (Objects.equals(itinerarios.get(i).getIdItinerario(), itinerario.getIdItinerario())) {
                 itinerarios.set(i, itinerario);
                 return Optional.of(itinerario);
             }

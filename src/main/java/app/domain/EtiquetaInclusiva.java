@@ -8,12 +8,17 @@ public class EtiquetaInclusiva {
     private CategoriaEtiqueta categoria;
     private String descripcion;
 
-    public EtiquetaInclusiva(int idEtiqueta, String nombre, CategoriaEtiqueta categoria, String descripcion){
-        this.idEtiqueta = idEtiqueta;
+    public EtiquetaInclusiva(String nombre, int idEtiqueta, CategoriaEtiqueta categoria, String descripcion) {
         this.nombre = nombre;
+        this.idEtiqueta = idEtiqueta;
         this.categoria = categoria;
         this.descripcion = descripcion;
     }
+
+    public EtiquetaInclusiva() {
+
+    }
+
 
     public int getIdEtiqueta() {
         return idEtiqueta;
@@ -31,8 +36,8 @@ public class EtiquetaInclusiva {
         this.nombre = nombre;
     }
 
-    public CategoriaEtiqueta getCategoria() {
-        return categoria;
+    public String getCategoria() {
+        return null;
     }
 
     public void setCategoria(CategoriaEtiqueta categoria) {

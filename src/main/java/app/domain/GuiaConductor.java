@@ -15,6 +15,10 @@ public class GuiaConductor extends Persona implements PrestadorLocal {
         this.calificacionPromedio = calificacionPromedio;
     }
 
+    public GuiaConductor() {
+
+    }
+
     //MÉTODOS DEL CONTRATO (Interfaz "PrestadorLocal"):
     public double obtenerTarifaBase() {
         return this.tarifaBase;
@@ -41,10 +45,11 @@ public class GuiaConductor extends Persona implements PrestadorLocal {
 
 
 
+
     //GETTERS:
     public double getTarifaBase() {return tarifaBase;}
 
-    public boolean isInsigniaEspecializada() {return insigniaEspecializada;}
+    public boolean isInsigniaEspecializada() {return this.insigniaEspecializada;}
 
     public double getCalificacionPromedio() {return calificacionPromedio;}
 

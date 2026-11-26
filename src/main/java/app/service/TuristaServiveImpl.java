@@ -35,7 +35,7 @@ public class TuristaServiveImpl implements TuristaService {
         actualizado.setIdPersona(idPersona);
         actualizado.setNombre(nombre);
         actualizado.setApellido(apellido);
-        actualizado.setDocumentoId();
+        actualizado.setDocumentoId(documentoId);
         actualizado.setTelefono(telefono);
         actualizado.setEmail(email);
         actualizado.setFechaNacimiento(fechaNacimiento);

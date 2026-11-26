@@ -13,7 +13,11 @@ public class Turista extends Persona {
             this.idiomaPreferido = idiomaPreferido;
         }
 
-        //MÉTODOS HEREDADOS:
+    public Turista() {
+        super();
+    }
+
+    //MÉTODOS HEREDADOS:
         @Override
         public int calcularEdad() {
             return super.calcularEdad();

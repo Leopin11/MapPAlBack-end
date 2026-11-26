@@ -23,6 +23,10 @@ public class Comercio implements PrestadorLocal {
         this.calificacionPromedio = calificacionPromedio;
     }
 
+    public Comercio() {
+
+    }
+
 
     @Override
     public double obtenerTarifaBase() {

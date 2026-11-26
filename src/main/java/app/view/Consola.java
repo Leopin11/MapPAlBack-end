@@ -29,6 +29,20 @@ public class Consola {
         }
     }
 
+    public double leerDouble(String mensaje){
+        while (true){
+            try {
+                System.out.println(mensaje);
+                double valor = sc.nextDouble();
+                sc.nextLine();
+                return valor;
+            } catch (InputMismatchException e){
+                System.out.println("Ingresa un número válido, por favor.");
+                sc.nextLine();
+            }
+        }
+    }
+
     public boolean leerBooleano(String mensaje) {
         while (true) {
             System.out.println(mensaje + " (Verdadero/Falso)");
@@ -85,4 +99,6 @@ public class Consola {
             }
         }
     }
+
+
 }
