@@ -1,23 +1,27 @@
 package app.userinterface;
 
-import app.persistence.dbconnection.DataBaseConnection;
-import app.view.CertificadoView;
-import app.view.Consola;
-import app.view.ReservaView;
-import app.view.VehiculoView;
+import app.view.*;
 
 
 public class UserInterface {
     private final VehiculoView vehiculoView;
     private final CertificadoView certificadoView;
     private final ReservaView reservaView;
+    private final TuristaView turistaView;
+    private final GuiaConductorView guiaConductorView;
+    private final ItinerarioView itinerarioView;
+    private final ComercioView comercioView;
     private final Consola consola;
 
 
-    public UserInterface(VehiculoView vehiculoView, CertificadoView certificadoView, ReservaView reservaView, Consola consola) {
+    public UserInterface(VehiculoView vehiculoView, CertificadoView certificadoView, ReservaView reservaView, TuristaView turistaView, GuiaConductorView guiaConductorView, ItinerarioView itinerarioView, ComercioView comercioView, Consola consola) {
         this.vehiculoView = vehiculoView;
         this.certificadoView = certificadoView;
         this.reservaView = reservaView;
+        this.turistaView = turistaView;
+        this.guiaConductorView = guiaConductorView;
+        this.itinerarioView = itinerarioView;
+        this.comercioView = comercioView;
         this.consola = consola;
     }
 
@@ -34,8 +38,12 @@ public class UserInterface {
                     ----- Selecciona Una Opcion ------
                     1.Vehiculos.
                     2.Reservas.
+                    3.Turistas.
                     4.Certificados
-                    6.Salir.
+                    5.Guias Conductores.
+                    6.Itinerarios.
+                    7.Comercios.
+                    8.Salir.
                     
                     """) ;
 
@@ -47,15 +55,21 @@ public class UserInterface {
                     reservaView.mostrarMenuReservas();
                     break;
                 case 3:
-                    // A-Itinerarios
+                    turistaView.mostrarMenuTuristas();
                     break;
                 case 4:
                     certificadoView.mostrarMenuCertificados();
                     break;
                 case 5:
-                    // Etiqueta Inclusiva
+                    guiaConductorView.mostrarMenuGuias();
                     break;
                 case 6:
+                    itinerarioView.mostrarMenuItinerarios();
+                    break;
+                case 7:
+                    comercioView.mostrarMenuComercios();
+                    break;
+                case 8:
                     System.out.println("Saliendo del Programa...");
                     break;
                 default:

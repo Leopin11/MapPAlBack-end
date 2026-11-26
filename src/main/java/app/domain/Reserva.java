@@ -80,5 +80,6 @@ public class Reserva {
     }
 
     public void setEstado(EstadoReserva estadoReserva) {
+        this.estado = estadoReserva;
     }
 }

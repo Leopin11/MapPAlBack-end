@@ -16,10 +16,8 @@ public class ReservaMapper implements RowMapper<Reserva> {
         Reserva reserva = new Reserva();
         reserva.setIdReserva(rs.getInt("IdReserva"));
         reserva.setFechaReserva(rs.getDate("Fecha_reserva").toLocalDate().atStartOfDay());
-
         String estado = rs.getString("Estado_reserva");
         reserva.setEstado(estado != null ? EstadoReserva.valueOf(estado) : null);
-
         reserva.setMontoTotal(rs.getDouble("Monto_total"));
         return reserva;
     }

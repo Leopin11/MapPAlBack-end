@@ -2,23 +2,28 @@ package app.domain;
 
 import app.domain.enums.NivelEstimulacion;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Itinerario {
     private int idItinerario;
     private String destino;
-    private LocalDateTime fechaDeInicio;
-    private LocalDateTime fechaFin;
+    private LocalDate fechaDeInicio;
+    private LocalDate fechaFin;
     private String tipoExperiencia;
     private NivelEstimulacion nivelEstimulacion;
 
-    public Itinerario(int idItinerario, String destino, LocalDateTime fechaDeInicio, LocalDateTime fechaFin, String tipoExperiencia, NivelEstimulacion nivelEstimulacion){
+    public Itinerario(int idItinerario, String destino, LocalDate fechaDeInicio, LocalDate fechaFin, String tipoExperiencia, NivelEstimulacion nivelEstimulacion){
         this.idItinerario = idItinerario;
         this.destino = destino;
         this.fechaDeInicio = fechaDeInicio;
         this.fechaFin = fechaFin;
         this.tipoExperiencia = tipoExperiencia;
         this.nivelEstimulacion = nivelEstimulacion;
+    }
+
+    public Itinerario() {
+
     }
 
     public Integer getIdItinerario() {
@@ -37,19 +42,19 @@ public class Itinerario {
         this.destino = destino;
     }
 
-    public LocalDateTime getFechaDeInicio() {
-        return fechaDeInicio;
+    public LocalDate getFechaDeInicio() {
+        return this.fechaDeInicio;
     }
 
-    public void setFechaDeInicio(LocalDateTime fechaDeInicio) {
+    public void setFechaDeInicio(LocalDate fechaDeInicio) {
         this.fechaDeInicio = fechaDeInicio;
     }
 
-    public LocalDateTime getFechaFin() {
+    public LocalDate getFechaFin() {
         return fechaFin;
     }
 
-    public void setFechaFin(LocalDateTime fechaFin) {
+    public void setFechaFin(LocalDate fechaFin) {
         this.fechaFin = fechaFin;
     }
 
